@@ -102,7 +102,7 @@ body{
   font-size: 18px;
 }
 .rotate .options button:active{
-  color: #d5f0ed;
+  color: #fff;
   background: #5372F0;
   border-color: #5372F0;
 }
@@ -149,4 +149,33 @@ body{
   margin-left: 5px;
   background: #5372F0;
   border: 1px solid #5372F0;
+}
+
+@media screen and (max-width: 760px) {
+  .container{
+    padding: 25px;
+  }
+  .container .wrapper{
+    flex-wrap: wrap-reverse;
+  }
+  .wrapper .editor-panel{
+    width: 100%;
+  }
+  .wrapper .preview-img{
+    width: 100%;
+    margin: 0 0 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .controls button{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .controls .row{
+    width: 100%;
+  }
+  .controls .row .save-img{
+    margin-left: 0px;
+  }
 }
