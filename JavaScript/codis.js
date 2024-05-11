@@ -42,7 +42,7 @@ const submitBtnClick = () => {
     window.location.href = "Klenn.html";
     message.style.color = "#826afb";
   } else {
-    window.location.href = "Home.html";
+    window.location.href = "HOME.html";
     message.style.color = "#FF2525";
   }
 };
