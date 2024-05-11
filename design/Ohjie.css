@@ -9,7 +9,7 @@
     --color-brand: #8ac8f1;
     --color-brand2: #03609e;
     --sidbar-width: 240px;
-    --font-base: "Bai Jamjuree";
+    --font-base: "Raleway";
 }
 
 body {
@@ -103,9 +103,10 @@ img {
 
 .navbar {
     background-color: var(--color-base);
-    box-shadow: 0 0 5px rgb(255, 0, 0),
-    0 0 25px rgb(255, 0, 0), 0 0 50px rgb(255, 0, 0),
-    0 0 100px rgb(255, 0, 0), 0 0 200px rgb(255, 0, 0);
+    background: linear-gradient(45deg, #7a1402, #a1510e, #918e0d, #399913, #17947f, #15246d, #672da5, #8b0f70, #b30404);
+    background-size: 400%;
+    transition: opacity 0.3s ease-in-out;
+    animation: animate 20s linear infinite;
 }
 
 .navbar .nav-link {
@@ -129,9 +130,10 @@ img {
         background: linear-gradient(rgba(3, 63, 71, 0.8), rgba(3, 63, 71, 0.8)), url("images/Master infotech.jpg");
         background-size: cover;
         background-position: center;
-        box-shadow: 0 0 5px rgb(255, 0, 0),
-        0 0 25px rgb(255, 0, 0), 0 0 50px rgb(255, 0, 0),
-        0 0 100px rgb(255, 0, 0), 0 0 200px rgb(255, 0, 0);
+        background: linear-gradient(45deg, #7a1402, #a1510e, #918e0d, #399913, #17947f, #15246d, #672da5, #8b0f70, #b30404);
+        background-size: 400%;
+        transition: opacity 0.3s ease-in-out;
+        animation: animate 20s linear infinite;
     }
 
     .navbar-brand img {
@@ -143,25 +145,72 @@ img {
     }
 }
 
-.btn {
-    padding: 12px 28px;
-    font-weight: 700;
+.btn-brand {
+  --color-brand: #068ea0;
+  --color-brand2: #0d1ca7;
+  --color-base: white;
+
+  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-brand {
-    background-color: var(--color-brand);
-    border-color: var(--color-brand);
-    color: var(--color-base);
+.btn-brand:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  height: calc(100% + 4px);
+  width: calc(100% + 4px);
+  border-radius: 5px;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(5px);
+  background: linear-gradient(45deg, #7a1402, #a1510e, #918e0d, #399913, #17947f, #15246d, #672da5, #8b0f70, #b30404);
+  background-size: 400%;
+  transition: opacity 0.3s ease-in-out;
+  animation: animate 20s linear infinite;
+}
+
+.btn-brand:hover:before,
+.btn-brand:focus:before {
+  opacity: 1;
 }
 
 .btn-brand:hover,
 .btn-brand:focus {
-    background-color: var(--color-brand2);
-    color: var(--color-base);
-    border-color: var(--color-brand2);
-    box-shadow: 0 0 5px cyan,
-    0 0 25px cyan, 0 0 50px cyan,
-    0 0 100px cyan, 0 0 200px cyan;
+  background-color: var(--color-brand2);
+  color: var(--color-base);
+  border-color: var(--color-brand2);
+}
+
+.btn-brand:hover:active,
+.btn-brand:focus:active {
+  background: none;
+}
+
+.btn-brand:hover:active:before,
+.btn-brand:focus:active:before {
+  filter: blur(2px);
+}
+
+@keyframes animate {
+0% {
+  background-position: 0 0;
+}
+50% {
+  background-position: 400% 0;
+}
+100% {
+  background-position: 0 0;
+}
 }
 
 .link-custom {
@@ -178,9 +227,10 @@ img {
     left: 0;
     top: 110%;
     transition: all 0.4s;
-    box-shadow: 0 0 5px cyan,
-    0 0 25px cyan, 0 0 50px cyan,
-    0 0 100px cyan, 0 0 200px cyan;
+    background: linear-gradient(45deg, #7a1402, #a1510e, #918e0d, #399913, #17947f, #15246d, #672da5, #8b0f70, #b30404);
+    background-size: 400%;
+    transition: opacity 0.3s ease-in-out;
+    animation: animate 20s linear infinite;
 }
 
 .link-custom:hover::after {
@@ -232,90 +282,123 @@ img {
     font-size: 24px;
 }
 
-.wrapper{
-    max-width: 1100px;
-    width: 300%;
-    position: relative;
-    overflow-x: scroll;
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
+
+.wrapper {
+  max-width: 1000px;
+  width: 300%;
+  position: relative;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel {
+  font-size: 0px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  transition: scroll-left 0.4s ease-out;
+  transition: scroll-right 0.4s ease-out;
+}
+
+.carousel.dragging {
+  cursor: grab;
+  scroll-behavior: auto;
+}
+
+.carousel.dragging img {
+  pointer-events: none;
+}
+
+.carousel img {
+  height: 340px;
+  object-fit: cover;
+  user-select: none;
+  margin-left: 14px;
+  width: calc(100% / 3);
+}
+
+.carousel img:first-child {
+  margin-left: 0px;
+}
+
+/* My Memories Slider styles */
+.memories-slider.carousel img {
+  height: 340px;
+}
+
+.memories-slider.carousel img:hover {
+  transform: scale(1.1);
+}
+
+/* My Cousin Slider styles */
+.cousin-slider.carousel img {
+  height: 280px;
+}
+
+.cousin-slider.carousel img:hover {
+  transform: scale(1.05);
+}
+
+
+
+@media screen and (min-width: 1200px) {
+ .carousel img {
+    height: 400px;
   }
-  .wrapper i{
-    top: 50%;
-    height: 44px;
-    width: 44px;
-    color: #343F4F;
-    cursor: pointer;
-    font-size: 1.15rem;
-    position: absolute;
-    text-align: center;
-    line-height: 44px;
-    background: #fff;
-    border-radius: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.1s linear;
+ .memories-slider.carousel img {
+    height: 400px;
   }
-  .wrapper i:active{
-    transform: translateY(-50%) scale(0.9);
+ .cousin-slider.carousel img {
+    height: 360px;
   }
-  .wrapper i:hover{
-    background: #f2f2f2;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+ .carousel img {
+    height: 320px;
   }
-  .wrapper i:first-child{
-    left: -22px;
-    display: none;
+ .memories-slider.carousel img {
+    height: 320px;
   }
-  .wrapper i:last-child{
-    right: -22px;
+ .cousin-slider.carousel img {
+    height: 280px;
   }
-  .carousel{
-    font-size: 0px;
-    cursor: pointer;
-    overflow: hidden;
-    white-space: nowrap;
-    scroll-behavior: smooth;
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+ .carousel img {
+    height: 240px;
   }
-  .carousel.dragging{
-    cursor: grab;
-    scroll-behavior: auto;
+ .memories-slider.carousel img {
+    height: 240px;
   }
-  .carousel.dragging img{
-    pointer-events: none;
+ .cousin-slider.carousel img {
+    height: 200px;
   }
-  .carousel img{
-    height: 340px;
-    object-fit: cover;
-    user-select: none;
-    margin-left: 14px;
-    width: calc(100% / 3);
+}
+
+@media screen and (max-width: 767px) {
+ .carousel img {
+    height: 180px;
   }
-  .carousel img:first-child{
-    margin-left: 0px;
+ .memories-slider.carousel img {
+    height: 180px;
   }
-  @media screen and (max-width: 1200px) {
-    .carousel img{
-      width: calc(100% / 2);
-    }
+ .cousin-slider.carousel img {
+    height: 140px;
   }
-  @media screen and (max-width: 992px) {
-    .wrapper{
-      width: 100%;
-    }
-    .carousel img{
-      height: 200px;
-    }
+}
+
+@media screen and (max-width: 479px) and (orientation: landscape) {
+ .carousel img {
+    height: 120px;
   }
-  @media screen and (max-width: 768px) {
-    .wrapper i{
-      display: none;
-    }
-    .carousel img{
-      height: 150px;
-    }
+ .memories-slider.carousel img {
+    height: 120px;
   }
-  @media screen and (max-width: 550px) {
-    .carousel img{
-      width: 100%;
-      height: auto;
-    }
+ .cousin-slider.carousel img {
+    height: 100px;
   }
+}
