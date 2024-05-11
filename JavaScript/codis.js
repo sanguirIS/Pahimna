@@ -42,7 +42,7 @@ const submitBtnClick = () => {
     window.location.href = "Klenn.html";
     message.style.color = "#826afb";
   } else {
-    message.innerText = "Entered captcha is not correct";
+    window.location.href = "Home.html";
     message.style.color = "#FF2525";
   }
 };
