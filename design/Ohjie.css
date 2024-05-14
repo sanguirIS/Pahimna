@@ -9,7 +9,7 @@
     --color-brand: #8ac8f1;
     --color-brand2: #03609e;
     --sidbar-width: 240px;
-    --font-base: "Raleway";
+    --font-base: "Taoma";
 }
 
 body {
@@ -49,18 +49,6 @@ img {
     opacity: 0;
     animation: pulse 2.5s infinite;
     background-color: var(--text-color);
-  }
-  
-  @keyframes pulse {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.1;
-    }
-    100% {
-      opacity: 0;
-    }
   }
 
 .text-brand {
@@ -123,28 +111,6 @@ img {
     color: var(--color-brand);
 }
 
-@media (min-width: 992px) {
-    .navbar {
-        min-height: 100vh;
-        width: var(--sidbar-width);
-        background: linear-gradient(rgba(3, 63, 71, 0.8), rgba(3, 63, 71, 0.8)), url("images/Master infotech.jpg");
-        background-size: cover;
-        background-position: center;
-        background: linear-gradient(45deg, #7a1402, #a1510e, #918e0d, #399913, #17947f, #15246d, #672da5, #8b0f70, #b30404);
-        background-size: 400%;
-        transition: opacity 0.3s ease-in-out;
-        animation: animate 20s linear infinite;
-    }
-
-    .navbar-brand img {
-        border: 8px solid var(--color-brand);
-    }
-
-    #content-wrapper {
-        padding-left: var(--sidbar-width);
-    }
-}
-
 .btn-brand {
   --color-brand: #068ea0;
   --color-brand2: #0d1ca7;
@@ -153,7 +119,7 @@ img {
   padding: 12px 28px;
   font-weight: 700;
   font-size: 18px;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Taoma', sans-serif;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -199,18 +165,6 @@ img {
 .btn-brand:hover:active:before,
 .btn-brand:focus:active:before {
   filter: blur(2px);
-}
-
-@keyframes animate {
-0% {
-  background-position: 0 0;
-}
-50% {
-  background-position: 400% 0;
-}
-100% {
-  background-position: 0 0;
-}
 }
 
 .link-custom {
@@ -284,12 +238,35 @@ img {
 
 
 .wrapper {
-  max-width: 1000px;
-  width: 300%;
+  max-width: 100dvw;
+  width: 100dvw;
   position: relative;
   overflow-x: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.prev-arrow, .next-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prev-arrow span, .next-arrow span {
+  display: none;
+}
+
+.prev-arrow[data-has-label="true"]:not([data-hide-label]), .next-arrow[data-has-label="true"]:not([data-hide-label]) span {
+  display: block;
 }
 
 .carousel {
@@ -312,7 +289,7 @@ img {
 }
 
 .carousel img {
-  height: 340px;
+  height: 340dvw;
   object-fit: cover;
   user-select: none;
   margin-left: 14px;
@@ -341,7 +318,13 @@ img {
   transform: scale(1.05);
 }
 
+#left {
+  left: 0;
+}
 
+#right {
+  right: 0;
+}
 
 @media screen and (min-width: 1200px) {
  .carousel img {
@@ -402,3 +385,49 @@ img {
     height: 100px;
   }
 }
+
+@media (min-width: 992px) {
+  .navbar {
+      min-height: 100vh;
+      width: var(--sidbar-width);
+      background: linear-gradient(rgba(3, 63, 71, 0.8), rgba(3, 63, 71, 0.8)), url("images/Master infotech.jpg");
+      background-size: cover;
+      background-position: center;
+      background: linear-gradient(45deg, #7a1402, #a1510e, #918e0d, #399913, #17947f, #15246d, #672da5, #8b0f70, #b30404);
+      background-size: 400%;
+      transition: opacity 0.3s ease-in-out;
+      animation: animate 20s linear infinite;
+  }
+
+  .navbar-brand img {
+      border: 8px solid var(--color-brand);
+  }
+
+  #content-wrapper {
+      padding-left: var(--sidbar-width);
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

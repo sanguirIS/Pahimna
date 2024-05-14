@@ -74,7 +74,7 @@ class Slider {
     this.carousel.scrollLeft += e.target.id == 'left' ? -firstImgWidth : firstImgWidth;
     this.showHideIcons();
   }
-
+  
   showHideIcons() {
     const scrollWidth = this.carousel.scrollWidth - this.carousel.clientWidth;
     this.arrowIcons[0].style.display = this.carousel.scrollLeft == 0 ? 'none' : 'block';
