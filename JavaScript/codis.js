@@ -39,7 +39,7 @@ const submitBtnClick = () => {
     .join("");
   message.classList.add("active");
   if (captchaInputBox.value === captchaText) {
-    window.location.href = "Klenn.html";
+    window.location.href = "waiting.html";
     message.style.color = "#826afb";
   } else {
     window.location.href = "HOME.html";
