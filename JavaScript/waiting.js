@@ -12,6 +12,6 @@ let progress = setInterval(() => {
     circularProgress.style.background = `conic-gradient(#7d2ae8 ${progressStartValue * 3.6}deg, #ededed 0deg)`
 
     if(progressStartValue == progressEndValue){
-        clearInterval(window.location.href = "Klenn.html");
+        clearInterval(window.location.href = "terms&regulation.html");
     }    
 }, speed);
