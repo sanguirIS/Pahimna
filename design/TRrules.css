@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    background-size: 400%;
+    transition: opacity 0.3s ease-in-out;
+    animation: animate 20s linear infinite;
+    
+}
+.terms-box{
+    max-width: 460px;
+    background-color: #111111;
+    color: #fff;
+    padding: 60px 30px;
+}
+.terms-content{
+    padding: 0 20px;
+    height: 400px;
+    overflow-y: auto;
+    font-size: 14px;
+    font-weight: 500;
+    color: #f1f1f1;
+}
+.terms-content .audit{
+    margin-bottom: 10px;
+}
+.terms-content .greetings{
+    margin-bottom: 10px;
+}
+.terms-content::-webkit-scrollbar{
+    width: 4px;
+    background-color: #282828;
+}
+.terms-content::-webkit-scrollbar-thumb{
+    background-color: #e91417;
+}
+.terms-content h2{
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.terms-box h4{
+    font-size: 13px;
+    text-align: center;
+    padding: 0 40px;
+    margin: 40px;
+}
+.terms-box h4 span{
+    color: #ff191d;
+}
+.buttons{
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+.btn{
+    height: 50px;
+    width: calc(50% - 6px);
+    border: none;
+    border-radius: 6px;
+    font-size: 19px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-red{
+    background-color: #d13639;
+}
+.btn-grey{
+    background-color: #282828;
+}
+.btn:hover{
+    opacity: 0.6;
+}
