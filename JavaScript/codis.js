@@ -29,6 +29,12 @@ const captchaKeyUpValidate = () => {
   submitButton.classList.toggle("disabled", !captchaInputBox.value);
 
   if (!captchaInputBox.value) message.classList.remove("active");
+
+  captchaInputBox.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      submitBtnClick();
+    }
+  });
 };
 
 // Function to validate the entered captcha
