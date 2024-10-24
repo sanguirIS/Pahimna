@@ -6,7 +6,7 @@ const daysForecastDiv = document.querySelector(".days-forecast");
 const API_KEY = "16ad86d4c18c62ee4a5bdb23f5397908";
 
 const createWeatherCard = (cityName, weatherItem, index) => {
-    if(index === 0) {
+    if (index === 0) {
         return `<div class="mt-3 d-flex justify-content-between">
                     <div>
                         <h3 class="fw-bold">${cityName} (${weatherItem.dt_txt.split(" ")[0]})</h3>
@@ -81,4 +81,10 @@ const getCityCoordinates = () => {
     });
 }
 
-searchButton.addEventListener("click", () => getCityCoordinates());
+searchButton.addEventListener("click", getCityCoordinates());
+
+cityInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        getCityCoordinates();
+    }
+});
