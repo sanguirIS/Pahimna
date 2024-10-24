@@ -102,7 +102,7 @@ function validateEmail() {
   var gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
   var hotmailRegex = /^[a-zA-Z0-9._%+-]+@hotmail\.com$/;
   if (gmailRegex.test(email) || hotmailRegex.test(email)) {
-      // Email is valid, proceed with form submission
+
       return true;
   } else {
       alert("Please enter a valid Gmail or Hotmail email address.");
