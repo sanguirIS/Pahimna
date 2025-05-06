@@ -7,15 +7,15 @@
   font-family: "Poppins", sans-serif;
 }
 body {
+  margin: 0;
+  padding: 0;
   height: 100vh;
+  background: url("https://media.giphy.com/media/ECl6moPKcccLFytWjZ/giphy.gif")
+    no-repeat center center fixed;
+  background-size: cover;
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: all 0.4s;
-  background: linear-gradient(45deg, #7a1402, #a1510e, #918e0d, #399913, #17947f, #15246d, #672da5, #8b0f70, #b30404);
-  background-size: 400%;
-  transition: opacity 0.3s ease-in-out;
-  animation: animate 20s linear infinite;
+  align-items: center;
 }
 .container {
   position: relative;
@@ -108,4 +108,4 @@ header {
   100% {
     background-position: 0 0;
   }
-  }
+}
