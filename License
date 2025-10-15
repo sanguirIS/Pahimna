@@ -1,42 +1,126 @@
-# Professional License Agreement
+# Professional Software License Agreement
 
-## License Overview 📜
+## 1. License Overview 📜
 
-This Professional License Agreement ("Agreement") governs the use of the website [Your Website Name] (the "Website"). By accessing or using the Website, you agree to comply with the terms and conditions set forth in this Agreement.
+This Professional Software License Agreement (hereinafter referred to as the "Agreement") is entered into between sanguirIS (hereinafter referred to as the "Licensor") and the end user (hereinafter referred to as the "Licensee") regarding the use of Pahimna (hereinafter referred to as the "Software").
 
-## Grant of License ✅
+## 2. Definitions 📋
 
-Subject to the terms of this Agreement, [Your Name/Your Company Name] ("Licensor") grants you a non-exclusive, non-transferable, revocable license to access and use the Website for professional, commercial purposes.
+2.1. "Software" encompasses the complete Pahimna application, including but not limited to:
 
-## Restrictions 🚫
+- Source code and executable files
+- User interface elements and design assets
+- Documentation and associated materials
+- Proprietary algorithms and methodologies
+- Application Programming Interfaces (APIs)
 
-You may not:
+  2.2. "Intellectual Property Rights" means all rights in:
 
-1. Modify, adapt, or create derivative works based on the Website without prior written consent from the Licensor.
-2. Distribute, sell, or lease any part of the Website without prior written consent from the Licensor.
-3. Use the Website for any unlawful purpose or in violation of any applicable laws or regulations.
-4. Remove or alter any copyright, trademark, or other proprietary rights notices from the Website.
+- Patents, trademarks, and copyrights
+- Trade secrets and proprietary information
+- Design rights and database rights
+- All other intellectual property rights
 
-## Intellectual Property 🧠
+## 3. Grant of License ✅
 
-All content, features, and functionality on the Website, including but not limited to text, graphics, logos, and software, are the exclusive property of the Licensor or its licensors and are protected by copyright, trademark, and other intellectual property laws.
+3.1. Subject to the terms and conditions herein, the Licensor hereby grants to the Licensee a:
 
-## Disclaimer of Warranties ⚠️
+- Non-exclusive
+- Non-transferable
+- Revocable
+- Limited license
 
-The Website is provided on an "as-is" and "as-available" basis. The Licensor makes no representations or warranties of any kind, express or implied, regarding the operation of the Website or the information, content, materials, or products included on the Website.
+  3.2. This license permits the Licensee to:
 
-## Limitation of Liability ⚖️
+- Access and utilize the Software
+- Execute the Software for its intended purpose
+- Store necessary copies for backup purposes
 
-To the fullest extent permitted by law, the Licensor shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from or related to your use of the Website.
+## 4. Restrictions 🚫
 
-## Governing Law 📖
+4.1. The Licensee shall not:
+a) Decompile, reverse engineer, or disassemble the Software
+b) Modify, adapt, or create derivative works
+c) Remove or alter any proprietary notices
+d) Transfer, lease, rent, or sublicense the Software
+e) Use the Software for unlawful purposes
 
-This Agreement shall be governed by and construed in accordance with the laws of [Your State/Country], without regard to its conflict of law principles.
+4.2. Protected Components:
+a) Frontend Architecture - HTML/CSS frameworks - JavaScript modules - Custom routing systems
+b) Backend Systems - API integrations - Data processing modules
+c) Asset Collections - Design elements - Media resources - Custom fonts
 
-## Changes to the License 🔄
+## 5. Intellectual Property Rights 🧠
 
-The Licensor reserves the right to modify this Agreement at any time. Any changes will be effective immediately upon posting on the Website. Your continued use of the Website after any changes constitutes your acceptance of the new Agreement.
+5.1. Ownership:
+The Licensor retains all right, title, and interest in and to:
+
+- The Software
+- All modifications and improvements
+- All Intellectual Property Rights
+
+  5.2. Third-Party Components:
+  All third-party libraries and components are subject to their respective licenses.
+
+## 6. Warranties and Disclaimers ⚠️
+
+6.1. The Software is provided "AS IS" without warranty of any kind, express or implied.
+
+6.2. The Licensor disclaims all warranties regarding:
+
+- Fitness for a particular purpose
+- Merchantability
+- Non-infringement
+- Accuracy of results
+- Integration capabilities
+
+## 7. Limitation of Liability ⚖️
+
+7.1. In no event shall the Licensor be liable for:
+
+- Direct, indirect, or consequential damages
+- Loss of profits or business interruption
+- Data loss or system failure
+- Any other commercial damages or losses
+
+## 8. Term and Termination �
+
+8.1. This Agreement is effective until terminated.
+
+8.2. The Licensor may terminate this Agreement if the Licensee:
+
+- Violates any term of this Agreement
+- Fails to comply with applicable laws
+- Engages in unauthorized distribution
+
+## 9. Compliance with Laws 📋
+
+9.1. The Licensee agrees to comply with all applicable:
+
+- Local, state, and federal laws
+- Export control regulations
+- Data protection requirements
+
+## 10. General Provisions 📄
+
+10.1. Entire Agreement:
+This Agreement constitutes the entire understanding between the parties.
+
+10.2. Severability:
+If any provision is held invalid, all other provisions remain in effect.
+
+10.3. Amendments:
+The Licensor reserves the right to modify this Agreement with notice.
+
+## 11. Governing Law 📖
+
+11.1. This Agreement shall be governed by and construed in accordance with applicable laws, without regard to conflicts of law principles.
 
 ---
 
-By using the Website, you acknowledge that you have read, understood, and agree to be bound by this Agreement.
+By utilizing the Software, the Licensee acknowledges acceptance of these terms and conditions.
+
+© 2025 sanguirIS. All Rights Reserved. 🔒
+
+Version: 1.0
+Last Updated: October 14, 2025
