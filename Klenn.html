@@ -6,11 +6,17 @@
     <link rel="shortcut icon" type="x=icon" href="PicVid/taasing.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
     <title>DJ-K-AM</title>
     <link rel="stylesheet" href="design/aos.css">
     <link rel="stylesheet" href="design/bootstrap.min.css">
     <link rel="stylesheet" href="design/line-awesome.min.css">
     <link rel="stylesheet" href="design/Ohjie.css">
+    <!-- Prevent page from being cached -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar">
@@ -338,7 +344,7 @@
 
                     <div class="col-md-6" data-aos="fade-up">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-content p-4">
+                            <div class="card-custom-content p-4 secure-content">
                                 <h4>Photo Editor</h4>
                                 <a href="hytemala/pectol.html" target="_blank" class="link-custom">Click More</a>
                                 <h4>Weather</h4>
@@ -350,7 +356,7 @@
                     </div>  
                     <div class="col-md-6" data-aos="fade-up">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-content p-4">
+                            <div class="card-custom-content p-4 secure-content">
                                 <h4>BankDesign</h4>
                                 <a href="https://github.com/sanguirIS/BankDesign" target="_blank" class="link-custom">Click More</a>
                                 <h4>CP1</h4>
@@ -529,5 +535,31 @@
     <script src="JavaScript/babagi.js"></script>
     <script src="JavaScript/blur.js"></script>
     <script src="JavaScript/hihi.js"></script>
+    <!-- Security script to prevent inspection and protect sensitive data -->
+    <script src="JavaScript/security.js"></script>
+    
+    <!-- Obfuscate sensitive phone number -->
+    <script>
+        // Replace phone links with secure versions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all phone links and secure them
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+            phoneLinks.forEach(link => {
+                const phoneNumber = link.getAttribute('href').replace('tel:', '');
+                // Store phone data in a non-obvious way
+                link.setAttribute('data-secure', btoa(phoneNumber));
+                link.removeAttribute('href');
+                // Add click handler that only reveals number when needed
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const secureData = this.getAttribute('data-secure');
+                    if (secureData) {
+                        window.location.href = 'tel:' + atob(secureData);
+                    }
+                });
+                link.style.cursor = 'pointer';
+            });
+        });
+    </script>
 </body>
 </html>
