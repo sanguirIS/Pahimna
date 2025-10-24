@@ -1,0 +1,50 @@
+:root {
+  --primary-color: #3b82f6; /* Blue-500 */
+  --background-dark: #0f172a; /* Slate-900 */
+  --text-light: #f1f5f9; /* Slate-100 */
+  --card-dark: #1e293b; /* Slate-800 */
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+/* Custom scroll indicator for aesthetics */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981, var(--primary-color));
+  width: 0%;
+  z-index: 50;
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 75%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), transparent);
+}
+
+.responsive-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+a,
+button,
+.card-hover {
+  transition: all 0.2s ease-in-out;
+}
