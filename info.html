@@ -533,5 +533,31 @@
         }
       });
     </script>
+    
+    <!-- Security script to disable right-click and prevent inspection -->
+    <script>
+      // Disable right-click context menu
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      });
+
+      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+      document.addEventListener('keydown', function(e) {
+        if (
+          // F12 key
+          e.keyCode === 123 || 
+          // Ctrl+Shift+I
+          (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+          // Ctrl+Shift+J
+          (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
+          // Ctrl+U
+          (e.ctrlKey && e.keyCode === 85)
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      });
+    </script>
   </body>
 </html>
