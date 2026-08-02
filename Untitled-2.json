@@ -1,0 +1,927 @@
+{
+  "name": "Pahimna",
+  "path": "d:\\Pahimna",
+  "type": "directory",
+  "children": [
+    {
+      "name": "JavaScript",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "aos.js",
+          "type": "file",
+          "icon": "📜"
+        },
+        {
+          "name": "babagi.js",
+          "type": "file",
+          "icon": "📜"
+        },
+        {
+          "name": "codis.js",
+          "type": "file",
+          "icon": "📜"
+        },
+        {
+          "name": "port.js",
+          "type": "file",
+          "icon": "📜"
+        },
+        {
+          "name": "security.js",
+          "type": "file",
+          "icon": "📜"
+        },
+        {
+          "name": "waiting.js",
+          "type": "file",
+          "icon": "📜"
+        }
+      ]
+    },
+    {
+      "name": "PicVid",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "A Day In My Life.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "AVID READER IRON.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "AVOID READER BRONZE.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "AVOID READER CHALLENDER.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "AVOID READER EMERALD.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "AVOID READER GOLD.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "AVOID READER MASTER.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "AVOID READER SILVER.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "CREATIVE MIND.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "DR.jpg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "Family.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "GOLD STAR.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "GREAT JOB.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "Gemini_Generated_Image_b53nrgb53nrgb53n-removebg-preview.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "Gemini_Generated_Image_jx6bjx6bjx6bjx6b.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "Gemini_Generated_Image_pnfnaipnfnaipnfn.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "IMAGE AND COMPOSITION.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "Klenn Project.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "NORM0009s.MP4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "SLIDE SUCCESSOR.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "To See All My Cousin.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "[YT2mp3.info] - BSIS 101A.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "banana_1421733908245077.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "banana_316822617222579.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "brush.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "circle.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "eraser.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "filecr.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "huggingface_logo-noborder.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "jcls-removebg-preview.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "logo.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "luts.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "majorgeeks.gif",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "my edit.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "received_589127306302610.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "received_808368350387513.mp4",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "rectangle.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "sanguir_160148-removebg-preview.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "sti-removebg-preview.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "taasing.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "triangle.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "you are.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "yt1.png",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "yt2.jpg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "yt3.png",
+          "type": "file",
+          "icon": "🖼️"
+        }
+      ]
+    },
+    {
+      "name": "assets",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "css",
+          "type": "folder",
+          "icon": "📁"
+        },
+        {
+          "name": "font",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "material-symbol-rounded.woff2",
+              "type": "file",
+              "icon": "📄"
+            }
+          ]
+        },
+        {
+          "name": "images",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "weather_icons",
+              "type": "folder",
+              "icon": "📁",
+              "children": [
+                {
+                  "name": "01d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "01n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "02d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "02n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "03d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "03n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "04d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "04n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "09d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "09n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "10d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "10n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "11d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "11n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "13d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "13n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "50d.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "50n.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                },
+                {
+                  "name": "direction.png",
+                  "type": "file",
+                  "icon": "🖼️"
+                }
+              ]
+            },
+            {
+              "name": "logo.png",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "openweather.png",
+              "type": "file",
+              "icon": "🖼️"
+            }
+          ]
+        },
+        {
+          "name": "js",
+          "type": "folder",
+          "icon": "📁"
+        }
+      ]
+    },
+    {
+      "name": "design",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "Ohjie.css",
+          "type": "file",
+          "icon": "🎨"
+        },
+        {
+          "name": "TRrules.css",
+          "type": "file",
+          "icon": "🎨"
+        },
+        {
+          "name": "aos.css",
+          "type": "file",
+          "icon": "🎨"
+        },
+        {
+          "name": "codi.css",
+          "type": "file",
+          "icon": "🎨"
+        },
+        {
+          "name": "port.css",
+          "type": "file",
+          "icon": "🎨"
+        },
+        {
+          "name": "waiting.css",
+          "type": "file",
+          "icon": "🎨"
+        }
+      ]
+    },
+    {
+      "name": "fonts",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "la-brands-400.eot",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-brands-400.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "la-brands-400.ttf",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-brands-400.woff",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-brands-400.woff2",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-regular-400.eot",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-regular-400.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "la-regular-400.ttf",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-regular-400.woff",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-regular-400.woff2",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-solid-900.eot",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-solid-900.svg",
+          "type": "file",
+          "icon": "🖼️"
+        },
+        {
+          "name": "la-solid-900.ttf",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-solid-900.woff",
+          "type": "file",
+          "icon": "📄"
+        },
+        {
+          "name": "la-solid-900.woff2",
+          "type": "file",
+          "icon": "📄"
+        }
+      ]
+    },
+    {
+      "name": "hytemala",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "cs",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "Cousin.css",
+              "type": "file",
+              "icon": "🎨"
+            },
+            {
+              "name": "Family.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "christian.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "download.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "jakel.css",
+              "type": "file",
+              "icon": "🎨"
+            },
+            {
+              "name": "jcls-removebg-preview.png",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "jclsfamily.css",
+              "type": "file",
+              "icon": "🎨"
+            },
+            {
+              "name": "pser.css",
+              "type": "file",
+              "icon": "🎨"
+            },
+            {
+              "name": "sanguir_160148-removebg-preview.png",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "sti-removebg-preview.png",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "stibsisone.css",
+              "type": "file",
+              "icon": "🎨"
+            },
+            {
+              "name": "taasing.png",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "wed.css",
+              "type": "file",
+              "icon": "🎨"
+            }
+          ]
+        },
+        {
+          "name": "java",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "kalkol.js",
+              "type": "file",
+              "icon": "📜"
+            },
+            {
+              "name": "pswel.js",
+              "type": "file",
+              "icon": "📜"
+            },
+            {
+              "name": "wear.js",
+              "type": "file",
+              "icon": "📜"
+            }
+          ]
+        },
+        {
+          "name": "pic",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "04907f6d2e3d6b095943628027224f80.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "0930f85cfffd6f5f255d8b7ef75e0878.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "0fdbcc7c3baea9157347c0a288b38e29.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "329f3a98c50ddf913b373bc81290f26f.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "4a38bbe67773e6a4847660c8bb54747b.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "6441b9f6a4f0833fe067c61ed501b960.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "6b398e73669c60316623d16d96aac009.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "JC;LS_284933774587649.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "JCLS_1657931354539863.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "JCLS_20240615_133722.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "JCLS_20240615_133743.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "JCLS_20240615_133814.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "JCLS_20240615_133840.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "JCLS_20240615_133904.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "JCLS_20240615_133924.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "JCLS_2088540104853663.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "JCLS_712244403283226.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "a673ddb1642a22b6ea91fa51935fc4eb.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "c4444f086b0619096acacfc00c69d99d.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "f3071331b3c5f4fe6a65ef942acef7a6.jpg",
+              "type": "file",
+              "icon": "🖼️"
+            },
+            {
+              "name": "received_1212571532569681.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_1310520373052211.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_1647167602303424.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_282324777169437.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_302865081704128.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_506802573697015.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_592552035158485.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_623826885404863.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_645537057155996.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "received_846288953215855.jpeg",
+              "type": "file",
+              "icon": "📄"
+            },
+            {
+              "name": "you are.png",
+              "type": "file",
+              "icon": "🖼️"
+            }
+          ]
+        },
+        {
+          "name": "Pinsan.html",
+          "type": "file",
+          "icon": "🌐"
+        },
+        {
+          "name": "jcls.html",
+          "type": "file",
+          "icon": "🌐"
+        },
+        {
+          "name": "pass.html",
+          "type": "file",
+          "icon": "🌐"
+        },
+        {
+          "name": "pectol.html",
+          "type": "file",
+          "icon": "🌐"
+        },
+        {
+          "name": "stibsis.html",
+          "type": "file",
+          "icon": "🌐"
+        },
+        {
+          "name": "welder.html",
+          "type": "file",
+          "icon": "🌐"
+        }
+      ]
+    },
+    {
+      "name": "src",
+      "type": "folder",
+      "icon": "📁",
+      "children": [
+        {
+          "name": "functions",
+          "type": "folder",
+          "icon": "📁",
+          "children": [
+            {
+              "name": "httpTrigger1.js",
+              "type": "file",
+              "icon": "📜"
+            }
+          ]
+        },
+        {
+          "name": "index.js",
+          "type": "file",
+          "icon": "📜"
+        }
+      ]
+    },
+    {
+      "name": ".funcignore",
+      "type": "file",
+      "icon": "📄"
+    },
+    {
+      "name": ".gitignore",
+      "type": "file",
+      "icon": "📁"
+    },
+    {
+      "name": "HOME.html",
+      "type": "file",
+      "icon": "🌐"
+    },
+    {
+      "name": "Klenn.html",
+      "type": "file",
+      "icon": "🌐"
+    },
+    {
+      "name": "LICENSE",
+      "type": "file",
+      "icon": "📄"
+    },
+    {
+      "name": "README.md",
+      "type": "file",
+      "icon": "📝"
+    },
+    {
+      "name": "host.json",
+      "type": "file",
+      "icon": "⚙️"
+    },
+    {
+      "name": "info.html",
+      "type": "file",
+      "icon": "🌐"
+    },
+    {
+      "name": "package-lock.json",
+      "type": "file",
+      "icon": "⚙️"
+    },
+    {
+      "name": "package.json",
+      "type": "file",
+      "icon": "📦"
+    },
+    {
+      "name": "terms&regulation.html",
+      "type": "file",
+      "icon": "🌐"
+    },
+    {
+      "name": "waiting.html",
+      "type": "file",
+      "icon": "🌐"
+    }
+  ],
+  "metadata": {
+    "generated": "2026-08-02T16:46:24.249Z",
+    "generator": "FileTree Pro Extension",
+    "version": "0.2.0",
+    "showIcons": true,
+    "maxDepth": 15
+  }
+}
