@@ -14,7 +14,6 @@ const generateCaptcha = () => {
   );
   captchaText = changeString.join("   ");
   captchaTextBox.value = captchaText;
-  console.log(captchaText);
 };
 
 const refreshBtnClick = () => {
@@ -40,13 +39,16 @@ const submitBtnClick = () => {
     .split("")
     .filter((char) => char !== " ")
     .join("");
+  const userInput = captchaInputBox.value.replace(/\s+/g, "");
   message.classList.add("active");
-  if (captchaInputBox.value === captchaText) {
-    window.location.href = "waiting.html";
+  if (userInput === captchaText) {
+    message.textContent = "Tama Kapatid!";
     message.style.color = "#826afb";
+    window.location.href = "waiting.html";
   } else {
-    window.location.href = "HOME.html";
+    message.textContent = "Mali Kapatid, subukan muli.";
     message.style.color = "#FF2525";
+    refreshBtnClick();
   }
 };
 

@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action https://formsubmit.co; frame-ancestors 'none';">
     <title>DJ-K-AM</title>
     <link rel="stylesheet" href="design/aos.css">
     <link rel="stylesheet" href="design/bootstrap.min.css">
@@ -21,11 +22,19 @@
 
 <body data-bs-spy="scroll" data-bs-target=".navbar">
 
+    <!-- Animated anime background -->
+    <div class="anime-bg" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div  class="container flex-lg-column">
-            <a class="navbar-brand mx-lg-auto mb-lg-4" href="#">
+        <div class="container flex-lg-column">
+            <a class="navbar-brand mx-lg-auto mb-lg-4" href="#home">
                 <span class="h3 fw-bold d-block d-lg-none">Klenn Pahimna</span>
-                <img src="PicVid/taasing.png" class="d-none d-lg-block rounded-circle" loading="lazy" alt="" srcset="PicVid/taasing.png 400w, PicVid/taasing.png 800w, PicVid/taasing.png 1200w">
+                <img src="PicVid/taasing.png" class="d-none d-lg-block rounded-circle" loading="lazy" alt=""
+                    srcset="PicVid/taasing.png 400w, PicVid/taasing.png 800w, PicVid/taasing.png 1200w">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,11 +42,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto flex-lg-column text-lg-center">
-
                     <li class="nav-item">
                         <a class="nav-link" href="#home">HOME</a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#suggestion">suggestion</a>
+                        <a class="nav-link" href="#vlog">VLOG</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bsiscousin">MEMORIES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cord">PROJECTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#edit">EDITING</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#suggestion">SUGGESTION</a>
                     </li>
                 </ul>
             </div>
@@ -76,7 +97,7 @@
 
                     <div class="col-md-4" data-aos="fade-up">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/yt1.png" loading="lazy" alt="" srcset="PicVid/yt1.png 400w, PicVid/yt1.png 800w, PicVid/yt1.png 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -89,7 +110,7 @@
 
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/yt2.jpg" loading="lazy" alt="" srcset="PicVid/yt2.jpg 400w, PicVid/yt2.jpg 800w, PicVid/yt2.jpg 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -102,7 +123,7 @@
 
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/yt3.png" loading="lazy" alt="" srcset="PicVid/yt3.png 400w, PicVid/yt3.png 800w, PicVid/yt3.png 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -130,19 +151,21 @@
                         <div class="col-md-6" data-aos="fade-up">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/A Day In My Life.mp4" width="100%" height="auto" controls loop controls loop srcset="PicVid/A Day In My Life.mp4 400w, PicVid/A Day In My Life.mp4 800w, PicVid/A Day In My Life.mp4 1200w"></video>
+                                    <video src="PicVid/A Day In My Life.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/To See All My Cousin.mp4" width="100%" height="auto" controls loop srcset="PicVid/To See All My Cousin.mp4 400w, PicVid/To See All My Cousin.mp4 800w, PicVid/To See All My Cousin.mp4 1200w"></video>
+                                    <video src="PicVid/To See All My Cousin.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
 
         <section id="bsiscousin" class="full-height px-lg-5">
             <div class="container">
@@ -157,19 +180,19 @@
 
                     <div class="col-md-4" data-aos="fade-up">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/sti-removebg-preview.png" loading="lazy" alt="" srcset="PicVid/sti-removebg-preview.png 400w, PicVid/sti-removebg-preview.png 800w, PicVid/sti-removebg-preview.png 1200w">
                             </div>
                             <div class="card-custom-content p-4">
                                 <p class="text-brand mb-2">BSIS</p>
                                 <h5 class="mb-4">School Mates Memories.</h5>
-                                <a href="hytemala/stibsis.html"  target="_blank" class="link-custom">Click More</a>
+                                <a href="hytemala/stibsis.html" target="_blank" class="link-custom">Click More</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/sanguir_160148-removebg-preview.png" loading="lazy" alt="" srcset="PicVid/sanguir_160148-removebg-preview.png 400w, PicVid/sanguir_160148-removebg-preview.png 800w, PicVid/sanguir_160148-removebg-preview.png 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -181,7 +204,7 @@
                     </div>
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/jcls-removebg-preview.png" loading="lazy" alt="" srcset="PicVid/jcls-removebg-preview.png 400w, PicVid/jcls-removebg-preview.png 800w, PicVid/jcls-removebg-preview.png 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -209,19 +232,21 @@
                         <div class="col-md-6" data-aos="fade-up">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/banana_1421733908245077.mp4" width="100%" height="auto" controls loop controls loop srcset="PicVid/banana_1421733908245077.mp4 400w, PicVid/banana_1421733908245077.mp4 800w, PicVid/banana_1421733908245077.mp4 1200w"></video>
+                                    <video src="PicVid/banana_1421733908245077.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/banana_316822617222579.mp4" width="100%" height="auto" controls loop srcset="PicVid/banana_316822617222579.mp4 400w, PicVid/banana_316822617222579.mp4 800w, PicVid/banana_316822617222579.mp4 1200w"></video>
+                                    <video src="PicVid/banana_316822617222579.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
 
         <section id="sti" class="full-height px-lg-5">
             <div class="container">
@@ -237,21 +262,23 @@
                         <div class="col-md-6" data-aos="fade-up">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/received_589127306302610.mp4" width="100%" height="auto" controls loop srcset="PicVid/[YT2mp3.info] - BSIS 101A.mp4 400w, PicVid/[YT2mp3.info] - BSIS 101A.mp4 800w, PicVid/[YT2mp3.info] - BSIS 101A.mp4 1200w"></video>
+                                    <video src="PicVid/received_589127306302610.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/received_808368350387513.mp4" width="100%" height="auto" controls loop srcset="PicVid/Klenn Project.mp4 400w, PicVid/Klenn Project.mp4 800w, PicVid/Klenn Project.mp4 1200w"></video>
+                                    <video src="PicVid/received_808368350387513.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
 
-        <section id="sti" class="full-height px-lg-5">
+        <section id="sti-day" class="full-height px-lg-5">
             <div class="container">
 
                 <div class="row pb-4" data-aos="fade-up">
@@ -265,21 +292,23 @@
                         <div class="col-md-6" data-aos="fade-up">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/[YT2mp3.info] - BSIS 101A.mp4" width="100%" height="auto" controls loop srcset="PicVid/[YT2mp3.info] - BSIS 101A.mp4 400w, PicVid/[YT2mp3.info] - BSIS 101A.mp4 800w, PicVid/[YT2mp3.info] - BSIS 101A.mp4 1200w"></video>
+                                    <video src="PicVid/[YT2mp3.info] - BSIS 101A.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/Klenn Project.mp4" width="100%" height="auto" controls loop srcset="PicVid/Klenn Project.mp4 400w, PicVid/Klenn Project.mp4 800w, PicVid/Klenn Project.mp4 1200w"></video>
+                                    <video src="PicVid/Klenn Project.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
 
-        <section id="Edit Week" class="full-height px-lg-5">
+        <section id="edit-week" class="full-height px-lg-5">
             <div class="container">
 
                 <div class="row pb-4" data-aos="fade-up">
@@ -293,19 +322,21 @@
                         <div class="col-md-6" data-aos="fade-up">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/Family.mp4" width="100%" height="auto" controls loop srcset="PicVid/[YT2mp3.info] - BSIS 101A.mp4 400w, PicVid/[YT2mp3.info] - BSIS 101A.mp4 800w, PicVid/[YT2mp3.info] - BSIS 101A.mp4 1200w"></video>
+                                    <video src="PicVid/Family.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/my edit.mp4" width="100%" height="auto" controls loop srcset="PicVid/Klenn Project.mp4 400w, PicVid/Klenn Project.mp4 800w, PicVid/Klenn Project.mp4 1200w"></video>
+                                    <video src="PicVid/my edit.mp4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
 
         <section id="city" class="full-height px-lg-5">
             <div class="container">
@@ -321,14 +352,14 @@
                         <div class="col-md-6" data-aos="fade-up">
                             <div class="card-custom rounded-4 bg-base shadow-effect">
                                 <div class="card-custom-image rounded-4">
-                                    <video src="PicVid/NORM0009s.MP4" width="100%" height="auto" controls loop srcset="PicVid/NORM0009s.MP4 400w, PicVid/NORM0009s.MP4 800w, PicVid/NORM0009s.MP4 1200w"></video>
+                                    <video src="PicVid/NORM0009s.MP4" class="video-fluid" controls loop></video>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-         </section>
+        </section>
 
         <section id="cord" class="full-height px-lg-5">
             <div class="container">
@@ -352,8 +383,8 @@
                                 <h4>Password Ideas</h4>
                                 <a href="hytemala/pass.html" target="_blank" class="link-custom">Click More</a>
                             </div>
-                        </div>  
-                    </div>  
+                        </div>
+                    </div>
                     <div class="col-md-6" data-aos="fade-up">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
                             <div class="card-custom-content p-4 secure-content">
@@ -385,7 +416,7 @@
 
                     <div class="col-md-4" data-aos="fade-up">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/DR.jpg" loading="lazy" alt="" srcset="PicVid/DR.jpg 400w, PicVid/DR.jpg 800w, PicVid/DR.jpg 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -398,7 +429,7 @@
 
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/luts.png" loading="lazy" alt="" srcset="PicVid/luts.png 400w, PicVid/luts.png 800w, PicVid/luts.png 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -411,7 +442,7 @@
 
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/logo.png" loading="lazy" alt="" srcset="PicVid/logo.png 400w, PicVid/logo.png 800w, PicVid/logo.png 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -440,7 +471,7 @@
 
                     <div class="col-md-4" data-aos="fade-up">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/filecr.png" loading="lazy" alt="" srcset="PicVid/filecr.png 400W, PicVid/filecr.png 800w, PicVid/filecr.png 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -453,7 +484,7 @@
 
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/huggingface_logo-noborder.svg" loading="lazy" alt="" srcset="PicVid/huggingface_logo-noborder.svg 400w, PicVid/huggingface_logo-noborder.svg 800w, PicVid/huggingface_logo-noborder.svg 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -466,7 +497,7 @@
 
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
                         <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="blurred-img" class="card-custom-image rounded-4">
+                            <div class="card-custom-image rounded-4">
                                 <img class="rounded-4" src="PicVid/majorgeeks.gif" loading="lazy" alt="" srcset="PicVid/majorgeeks.gif 400w, PicVid/majorgeeks.gif 800w, PicVid/majorgeeks.gif 1200w">
                             </div>
                             <div class="card-custom-content p-4">
@@ -491,7 +522,7 @@
                     </div>
 
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
-                        
+
                         <form action="https://formsubmit.co/pahimna294klenn@gmail.com" method="POST" class="row g-lg-3 gy-3 needs-validation" novalidate>
                             <div class="form-group col-sm-12 col-md-6">
                                 <label for="name" class="form-label visually-hidden">Name</label>
@@ -549,35 +580,30 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
+    </div>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="la la-angle-up"></i></button>
+
     <script src="JavaScript/aos.js"></script>
     <script src="JavaScript/bootstrap.bundle.min.js"></script>
     <script src="JavaScript/babagi.js"></script>
-    <script src="JavaScript/blur.js"></script>
-    <script src="JavaScript/hihi.js"></script>
     <!-- Security script to prevent inspection and protect sensitive data -->
     <script src="JavaScript/security.js"></script>
-    
-    <!-- Obfuscate sensitive phone number -->
+
     <script>
-        // Replace phone links with secure versions
-        document.addEventListener('DOMContentLoaded', function() {
-            // Find all phone links and secure them
-            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-            phoneLinks.forEach(link => {
-                const phoneNumber = link.getAttribute('href').replace('tel:', '');
-                // Store phone data in a non-obvious way
-                link.setAttribute('data-secure', btoa(phoneNumber));
-                link.removeAttribute('href');
-                // Add click handler that only reveals number when needed
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const secureData = this.getAttribute('data-secure');
-                    if (secureData) {
-                        window.location.href = 'tel:' + atob(secureData);
-                    }
-                });
-                link.style.cursor = 'pointer';
+        // Back to top button
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 400) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+            });
+            btn.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
     </script>

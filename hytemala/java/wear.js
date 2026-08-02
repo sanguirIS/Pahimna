@@ -81,7 +81,7 @@ const getCityCoordinates = () => {
     });
 }
 
-searchButton.addEventListener("click", getCityCoordinates());
+searchButton.addEventListener("click", getCityCoordinates);
 
 cityInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {

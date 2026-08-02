@@ -1,23 +1,42 @@
 :root {
-  --primary-color: #3b82f6; /* Blue-500 */
-  --background-dark: #0f172a; /* Slate-900 */
-  --text-light: #f1f5f9; /* Slate-100 */
-  --card-dark: #1e293b; /* Slate-800 */
+  --primary-color: #ff2e63;
+  --primary-soft: #7b2cbf;
+  --secondary-color: #00f5d4;
+  --background-dark: #0f0524;
+  --text-light: #f1f5f9;
+  --card-dark: #1e293b;
   scroll-behavior: smooth;
 }
+
 body {
   font-family: "Inter", sans-serif;
   background-color: var(--background-dark);
   color: var(--text-light);
   line-height: 1.6;
+  min-height: 100vh;
 }
-/* Custom scroll indicator for aesthetics */
+
+/* Override Tailwind's bg-slate-900 on body so the animated gradient shows */
+body.bg-slate-900 {
+  background-color: var(--background-dark);
+  background: linear-gradient(135deg, #0f0524 0%, #1a0b2e 35%, #2d1b4e 65%, #0f0524 100%);
+  background-size: 300% 300%;
+  animation: aurora 18s ease-in-out infinite;
+}
+
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Custom scroll indicator */
 .progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   height: 4px;
-  background: linear-gradient(90deg, #10b981, var(--primary-color));
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
   width: 0%;
   z-index: 50;
 }
@@ -28,6 +47,7 @@ body {
   padding-bottom: 0.5rem;
   color: var(--primary-color);
 }
+
 .section-title::after {
   content: "";
   position: absolute;
@@ -47,4 +67,17 @@ a,
 button,
 .card-hover {
   transition: all 0.2s ease-in-out;
+}
+
+/* Card glow on hover */
+.group:hover {
+  box-shadow: 0 0 25px rgba(255, 46, 99, 0.25);
+}
+
+/* Nice scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0f0524; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-color), var(--primary-soft));
+  border-radius: 5px;
 }

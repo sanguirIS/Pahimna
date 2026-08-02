@@ -1,139 +1,104 @@
 /**
- * Security measures to prevent inspection and protect sensitive data
+ * Security measures: prevent right-click and inspection shortcuts,
+ * detect DevTools politely (warning overlay), and hide raw phone numbers.
  */
-
-// Anti-inspection measures
-(function() {
+(function () {
     // Disable right-click context menu
-    document.addEventListener('contextmenu', function(e) {
+    document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
         return false;
     });
 
-    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-    document.addEventListener('keydown', function(e) {
-        if (
-            // F12 key
-            e.keyCode === 123 || 
-            // Ctrl+Shift+I
-            (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
-            // Ctrl+Shift+J
-            (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
-            // Ctrl+U
-            (e.ctrlKey && e.keyCode === 85)
-        ) {
+    // Disable inspection shortcuts: F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S, Ctrl+P
+    document.addEventListener('keydown', function (e) {
+        const k = e.keyCode || e.which;
+        const blocked =
+            k === 123 || // F12
+            (e.ctrlKey && e.shiftKey && (k === 73 || k === 74 || k === 67)) || // Ctrl+Shift+I/J/C
+            (e.ctrlKey && k === 85) || // Ctrl+U
+            (e.ctrlKey && k === 83) || // Ctrl+S
+            (e.ctrlKey && k === 80); // Ctrl+P
+        if (blocked) {
             e.preventDefault();
+            e.stopPropagation();
             return false;
         }
     });
 
-    // Detect DevTools opening
-    const devToolsDetector = {
-        isOpen: false,
-        orientation: undefined,
-        
-        // Check for DevTools via console.log timing
-        checkDevTools: function() {
-            const threshold = 160;
-            const before = performance.now();
-            console.log('%c', 'padding: 1px; margin: 0; line-height: 0; display: block;');
-            const after = performance.now();
-            const diff = after - before;
-            
-            if (diff > threshold) {
-                // DevTools likely open
-                this.isOpen = true;
-                this.emitWarning();
-            } else {
-                this.isOpen = false;
-            }
-            
-            return this.isOpen;
-        },
-        
-        // Emit warning when DevTools detected
-        emitWarning: function() {
-            if (this.isOpen) {
-                document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h1>Security Alert</h1><p>For security reasons, developer tools access is restricted.</p></div>';
-            }
-        },
-        
-        // Initialize detection
-        init: function() {
-            setInterval(this.checkDevTools.bind(this), 1000);
-            window.addEventListener('resize', this.checkDevTools.bind(this));
-        }
-    };
+    // Show a warning overlay when DevTools is detected (instead of destroying the page)
+    let warningShown = false;
+    function showWarning() {
+        if (warningShown) return;
+        warningShown = true;
+        const overlay = document.createElement('div');
+        overlay.id = 'devtools-warning';
+        overlay.style.cssText =
+            'position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;' +
+            'background:rgba(10,5,30,0.92);backdrop-filter:blur(6px);color:#fff;font-family:sans-serif;text-align:center;padding:20px;';
+        overlay.innerHTML =
+            '<div><h2 style="margin:0 0 12px;color:#ff2e63;">⚠ Security Alert</h2>' +
+            '<p style="margin:0;font-size:15px;">Developer tools access is restricted on this website.<br>Please close DevTools to continue.</p></div>';
+        document.body.appendChild(overlay);
+    }
 
-    // Start DevTools detection
-    devToolsDetector.init();
-    
-    // Clear sensitive data from console
-    console.clear();
-    
-    // Override console methods to prevent logging
-    const consoleOverrides = ['log', 'info', 'warn', 'error', 'debug', 'table'];
-    consoleOverrides.forEach(method => {
-        const originalMethod = console[method];
-        console[method] = function() {
-            // Allow only specific messages (like our own security checks)
-            if (arguments[0] === '%c') {
-                return originalMethod.apply(console, arguments);
-            }
-            return undefined; // Suppress other console output
-        };
-    });
-    
-    // Obfuscate DOM elements with sensitive data
-    function obfuscateSensitiveData() {
-        // Find elements with sensitive data (phone numbers, emails, etc.)
-        const sensitiveElements = document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]');
-        
-        sensitiveElements.forEach(element => {
-            // Store original data in an encrypted format
-            const originalText = element.textContent;
-            const originalHref = element.getAttribute('href');
-            
-            // Replace visible text with a placeholder
-            if (element.href.startsWith('tel:')) {
-                element.textContent = 'Call me';
-                
-                // Add click handler to reveal actual number only when clicked
-                element.addEventListener('click', function(e) {
-                    // The actual number is used only at click time
-                    // and not stored in the DOM
-                    window.location.href = originalHref;
-                    e.preventDefault();
-                });
-                
-                // Remove the actual href to prevent it from being visible in status bar
-                element.removeAttribute('href');
-                element.style.cursor = 'pointer';
-            }
+    // Lightweight DevTools detection via window size delta
+    let lastWidth = window.innerWidth;
+    let lastHeight = window.innerHeight;
+
+    function detectDevTools() {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const threshold = 160;
+        if (Math.abs(w - lastWidth) > threshold || Math.abs(h - lastHeight) > threshold) {
+            showWarning();
+        }
+        lastWidth = w;
+        lastHeight = h;
+    }
+
+    // Also detect via console timing (non-destructive, generous threshold to avoid false positives)
+    function detectViaConsole() {
+        const before = performance.now();
+        console.log('%c', 'padding: 1px; margin: 0; line-height: 0; display: block;');
+        const after = performance.now();
+        if (after - before > 200) {
+            setTimeout(showWarning, 500);
+        }
+    }
+
+    // Skip the immediate check (page load is naturally slow); only poll later
+    setTimeout(function () {
+        setInterval(detectViaConsole, 5000);
+        window.addEventListener('resize', detectDevTools);
+    }, 3000);
+
+    // Protect phone links: reveal the number only on click
+    document.addEventListener('DOMContentLoaded', function () {
+        const links = document.querySelectorAll('a[href^="tel:"]');
+        links.forEach(function (link) {
+            const number = link.getAttribute('href').replace('tel:', '');
+            if (!number) return;
+            link.setAttribute('data-secure', btoa(number));
+            link.removeAttribute('href');
+            link.style.cursor = 'pointer';
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const data = this.getAttribute('data-secure');
+                if (data) {
+                    window.location.href = 'tel:' + atob(data);
+                }
+            });
         });
-    }
-    
-    // Run obfuscation after DOM is fully loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', obfuscateSensitiveData);
-    } else {
-        obfuscateSensitiveData();
-    }
-    
-    // Add CSS to prevent inspection of specific elements
+    });
+
+    // Prevent text selection on secure content areas
     const style = document.createElement('style');
     style.textContent = `
-        /* Prevent selection of sensitive elements */
         .secure-content {
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
-        }
-        
-        /* Hide elements from view source but keep them visible */
-        .obfuscated::after {
-            content: attr(data-content);
         }
     `;
     document.head.appendChild(style);

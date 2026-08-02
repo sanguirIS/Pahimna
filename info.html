@@ -40,7 +40,12 @@
     <nav class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md shadow-xl border-b border-blue-900/50 transition-all duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-          <div class="flex-shrink-0 hover:scale-105 transition-transform duration-300">
+          <div class="flex-shrink-0 flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+            <a
+              href="Klenn.html"
+              class="text-xs font-bold text-blue-300 hover:text-blue-400 transition border border-blue-800 rounded-full px-3 py-1 whitespace-nowrap"
+              ><span class="sm:hidden">←</span><span class="hidden sm:inline">← Back to Site</span></a
+            >
             <a
               href="#hero"
               class="text-xl font-extrabold text-white tracking-widest hover:text-blue-400 transition"
@@ -533,31 +538,9 @@
         }
       });
     </script>
-    
-    <!-- Security script to disable right-click and prevent inspection -->
-    <script>
-      // Disable right-click context menu
-      document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        return false;
-      });
 
-      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-      document.addEventListener('keydown', function(e) {
-        if (
-          // F12 key
-          e.keyCode === 123 || 
-          // Ctrl+Shift+I
-          (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
-          // Ctrl+Shift+J
-          (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
-          // Ctrl+U
-          (e.ctrlKey && e.keyCode === 85)
-        ) {
-          e.preventDefault();
-          return false;
-        }
-      });
-    </script>
+    <!-- Scroll progress bar (port.js) + shared security script -->
+    <script src="JavaScript/port.js"></script>
+    <script src="JavaScript/security.js"></script>
   </body>
 </html>
