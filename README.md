@@ -91,6 +91,11 @@ func azure functionapp publish <your-function-app-name>
 └── LICENSE
 ```
 
+## Docs
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — contribution guidelines
+- [CHANGELOG.md](CHANGELOG.md) — release history
+
 ## Contributing
 
 Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
