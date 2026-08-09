@@ -11,13 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Upgraded `@azure/functions` to `4.16.2` (resolves the `undici` vulnerabilities reported by `npm audit`/Dependabot).
 
-### Added
+### Removed
 
-- `npm run serve` — dependency-free static preview server (`scripts/serve.js`) for browsing the site locally without the Azure Functions host.
-- `npm test` — permanent smoke test (`scripts/smoke-test.js`) covering GPL notice headers, file structure, JS syntax, and HTTP serving of the site.
-- GitHub Actions CI workflow (`.github/workflows/ci.yml`) that runs the smoke tests on every push to `main` and on pull requests.
+- `CONTRIBUTING.md` — contribution guidelines file.
 
 ## [1.0.0] - 2026-08-09
+
+### Added
+
+- `CHANGELOG.md` — this file.
+- `npm run serve` — dependency-free static preview server (`scripts/serve.js`)
+  for browsing the site locally without the Azure Functions host.
+- `npm test` — permanent smoke test (`scripts/smoke-test.js`) covering GPL
+  notice headers, file structure, JS syntax, and HTTP serving of the site.
+- GitHub Actions CI workflow (`.github/workflows/ci.yml`) that runs the smoke
+  tests on every push to `main` and on pull requests.
 
 ### Changed
 
@@ -37,12 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   tech stack, local setup, Azure deployment, and project structure.
 - Added project metadata to `package.json`: a `description` and
   `"license": "GPL-3.0-or-later"`.
-
-### Added
-
-- `CONTRIBUTING.md` — contribution guidelines (PR checklist, development
-  setup, code style, commit conventions, issue reporting).
-- `CHANGELOG.md` — this file.
 
 ### Notes
 

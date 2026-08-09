@@ -22,5 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check for high-severity vulnerabilities
+        run: npm audit --audit-level=high
+
       - name: Run smoke tests
         run: npm test

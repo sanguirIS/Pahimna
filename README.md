@@ -104,12 +104,11 @@ The suite checks that every source file carries the GPL-3.0 notice, the HTML/CSS
 
 ## Docs
 
-- [CONTRIBUTING.md](CONTRIBUTING.md) — contribution guidelines
 - [CHANGELOG.md](CHANGELOG.md) — release history
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+Contributions are welcome! Please open an issue or pull request.
 
 ## License
 
