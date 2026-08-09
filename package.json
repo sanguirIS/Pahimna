@@ -1,9 +1,11 @@
 {
   "name": "pahimna",
   "version": "1.0.0",
-  "description": "",
+  "license": "GPL-3.0-or-later",
+  "description": "Personal website and creative hub of Klenn Pahimna — a portfolio, vlog showcase, family memories gallery, and web tools (weather, password generator, photo editor), built with vanilla HTML/CSS/JavaScript and an Azure Functions backend.",
   "scripts": {
     "start": "func start",
+    "serve": "node scripts/serve.js",
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
