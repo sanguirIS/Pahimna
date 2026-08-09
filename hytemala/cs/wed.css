@@ -126,3 +126,38 @@ h1, h4, h5 {
   box-shadow: 0 10px 25px rgba(255, 46, 99, 0.6);
   color: #fff;
 }
+
+/* ===== Light theme ===== */
+[data-theme="light"] body {
+  background: linear-gradient(135deg, #eef1fa 0%, #f7f9ff 40%, #e2f0ee 60%, #eef1fa 100%);
+  background-size: 300% 300%;
+}
+
+[data-theme="light"] header.bg-success {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 244, 255, 0.9)) !important;
+}
+
+[data-theme="light"] header .text-white { color: #171d33 !important; }
+
+[data-theme="light"] .days-forecast .card {
+  background: linear-gradient(145deg, #ffffff, #f0f4ff) !important;
+  border-color: rgba(23, 29, 51, 0.1) !important;
+}
+
+[data-theme="light"] .days-forecast .card.text-white,
+[data-theme="light"] .days-forecast .card .text-white { color: #171d33 !important; }
+
+[data-theme="light"] .form-control {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(23, 29, 51, 0.18);
+  color: #171d33;
+}
+
+[data-theme="light"] .form-control:focus {
+  background: #ffffff;
+  border-color: #0f766e;
+  color: #171d33;
+  box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.25);
+}
+
+[data-theme="light"] .form-control::placeholder { color: rgba(23, 29, 51, 0.5); }

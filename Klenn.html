@@ -27,6 +27,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action https://formsubmit.co; frame-ancestors 'none';">
+    <script>
+        // Apply theme before paint to avoid a flash of the wrong theme:
+        // an explicit choice wins, otherwise follow the system preference
+        try {
+            var savedTheme = localStorage.getItem('pahimna-theme');
+            var systemLight = window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches;
+            if (savedTheme === 'light' || (savedTheme !== 'dark' && systemLight)) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        } catch (e) { }
+    </script>
     <title>DJ-K-AM</title>
     <link rel="stylesheet" href="design/aos.css">
     <link rel="stylesheet" href="design/bootstrap.min.css">
@@ -38,7 +50,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <meta http-equiv="Expires" content="0">
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".navbar">
+<body>
 
     <!-- Animated anime background -->
     <div class="anime-bg" aria-hidden="true">
@@ -47,41 +59,70 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <span class="orb orb-3"></span>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container flex-lg-column">
-            <a class="navbar-brand mx-lg-auto mb-lg-4" href="#home">
-                <span class="h3 fw-bold d-block d-lg-none">Klenn Pahimna</span>
-                <img src="PicVid/taasing.png" class="d-none d-lg-block rounded-circle" loading="lazy" alt=""
-                    srcset="PicVid/taasing.png 400w, PicVid/taasing.png 800w, PicVid/taasing.png 1200w">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <!-- Desktop sidebar (laptop / PC) -->
+    <nav class="site-sidebar" id="siteSidebar" aria-label="Main navigation">
+        <a class="sidebar-brand" href="#home">
+            <img src="PicVid/taasing.png" alt="Klenn Pahimna" loading="lazy">
+            <span class="sidebar-name">Klenn Pahimna</span>
+        </a>
+
+        <ul class="sidebar-nav">
+            <li><a class="nav-link active" href="#home"><i class="la la-home"></i><span>Home</span></a></li>
+            <li><a class="nav-link" href="#vlog"><i class="la la-play-circle"></i><span>Vlog</span></a></li>
+            <li><a class="nav-link" href="#bsiscousin"><i class="la la-images"></i><span>Memories</span></a></li>
+            <li><a class="nav-link" href="#cord"><i class="la la-code"></i><span>Projects</span></a></li>
+            <li><a class="nav-link" href="#edit"><i class="la la-film"></i><span>Editing</span></a></li>
+            <li><a class="nav-link" href="#suggestion"><i class="la la-comment-dots"></i><span>Suggestion</span></a></li>
+            <li class="more-item">
+                <button class="nav-link more-toggle collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMore" aria-expanded="false" aria-controls="sidebarMore">
+                    <i class="la la-ellipsis-h"></i><span>More</span><i class="la la-chevron-up more-chevron"></i>
+                </button>
+                <div class="collapse more-menu" id="sidebarMore">
+                    <a class="nav-link" href="hytemala/welder.html"><i class="la la-cloud-sun"></i><span>Weather</span></a>
+                    <a class="nav-link" href="hytemala/pass.html"><i class="la la-key"></i><span>Password Ideas</span></a>
+                    <a class="nav-link" href="hytemala/pectol.html"><i class="la la-camera"></i><span>Photo Editor</span></a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="sidebar-bottom">
+            <button class="nav-link theme-toggle" type="button" id="themeToggleSidebar" aria-pressed="false"
+                aria-label="Switch to light mode">
+                <i class="la la-sun-o"></i><span>Theme</span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto flex-lg-column text-lg-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#vlog">VLOG</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#bsiscousin">MEMORIES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#cord">PROJECTS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#edit">EDITING</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#suggestion">SUGGESTION</a>
-                    </li>
-                </ul>
-            </div>
+            <a class="nav-link" href="info.html"><i class="la la-star"></i><span>Shortcuts</span></a>
+            <a class="nav-link" href="terms&amp;regulation.html"><i class="la la-question-circle"></i><span>Help</span></a>
         </div>
     </nav>
+
+    <!-- Mobile / tablet bottom navigation -->
+    <nav class="bottom-nav" id="bottomNav" aria-label="Bottom navigation">
+        <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
+        <a class="nav-link active" href="#home"><i class="la la-home"></i><span>Home</span></a>
+        <a class="nav-link" href="#vlog"><i class="la la-play-circle"></i><span>Vlog</span></a>
+        <a class="nav-link" href="#bsiscousin"><i class="la la-images"></i><span>Memories</span></a>
+        <a class="nav-link" href="#cord"><i class="la la-code"></i><span>Projects</span></a>
+        <button class="nav-link more-btn" id="moreBtn" type="button" aria-expanded="false" aria-controls="moreSheet">
+            <i class="la la-ellipsis-h"></i><span>More</span>
+        </button>
+        <button class="nav-link theme-toggle" type="button" id="themeToggleNav" aria-pressed="false"
+            aria-label="Switch to light mode">
+            <i class="la la-sun-o"></i><span>Theme</span>
+        </button>
+    </nav>
+
+    <!-- Mobile "More" bottom sheet -->
+    <div class="more-overlay" id="moreOverlay"></div>
+    <div class="more-sheet" id="moreSheet" role="dialog" aria-label="More options">
+        <div class="more-sheet-handle"></div>
+        <a class="nav-link" href="#edit"><i class="la la-film"></i><span>Editing</span></a>
+        <a class="nav-link" href="#suggestion"><i class="la la-comment-dots"></i><span>Suggestion</span></a>
+        <hr>
+        <a class="nav-link" href="info.html"><i class="la la-star"></i><span>Shortcuts</span></a>
+        <a class="nav-link" href="terms&amp;regulation.html"><i class="la la-question-circle"></i><span>Help</span></a>
+        <button class="more-sheet-close" id="moreClose">Close</button>
+    </div>
 
     <div id="content-wrapper">
 
@@ -623,6 +664,208 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             btn.addEventListener('click', function () {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+        });
+
+        // Scroll-spy: highlight the section link in the sidebar & bottom nav
+        document.addEventListener('DOMContentLoaded', function () {
+            var sections = ['home', 'vlog', 'bsiscousin', 'cord', 'edit', 'suggestion'];
+            var links = document.querySelectorAll(
+                '.site-sidebar .nav-link, .bottom-nav .nav-link, .more-sheet .nav-link'
+            );
+
+            function moveNavIndicator() {
+                var indicator = document.getElementById('navIndicator');
+                var bottomNav = document.getElementById('bottomNav');
+                if (!indicator || !bottomNav) {
+                    return;
+                }
+                if (bottomNav.offsetParent === null) {
+                    return; // nav is hidden on desktop — nothing to measure
+                }
+                var active = bottomNav.querySelector('.nav-link.active');
+                if (!active) {
+                    indicator.style.opacity = '0';
+                    return;
+                }
+                indicator.style.opacity = '1';
+                indicator.style.width = active.offsetWidth + 'px';
+                indicator.style.transform = 'translateX(' + active.offsetLeft + 'px)';
+            }
+
+            function updateActive() {
+                var current = 'home';
+                var limit = 130;
+                sections.forEach(function (id) {
+                    var el = document.getElementById(id);
+                    if (el && el.getBoundingClientRect().top <= limit) {
+                        current = id;
+                    }
+                });
+                links.forEach(function (link) {
+                    var on = link.getAttribute('href') === '#' + current;
+                    link.classList.toggle('active', on);
+                    if (on) {
+                        link.setAttribute('aria-current', 'page');
+                    } else {
+                        link.removeAttribute('aria-current');
+                    }
+                });
+                moveNavIndicator();
+            }
+
+            window.addEventListener('scroll', updateActive, { passive: true });
+            window.addEventListener('resize', updateActive);
+            window.addEventListener('load', moveNavIndicator);
+            updateActive();
+        });
+
+        // Mobile "More" bottom sheet
+        document.addEventListener('DOMContentLoaded', function () {
+            var moreBtn = document.getElementById('moreBtn');
+            var moreSheet = document.getElementById('moreSheet');
+            var moreOverlay = document.getElementById('moreOverlay');
+            var moreClose = document.getElementById('moreClose');
+
+            function openMore() {
+                moreSheet.classList.add('open');
+                moreOverlay.classList.add('show');
+                document.body.classList.add('sheet-open');
+                moreBtn.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeMore() {
+                moreSheet.classList.remove('open');
+                moreOverlay.classList.remove('show');
+                document.body.classList.remove('sheet-open');
+                moreBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            moreBtn.addEventListener('click', function () {
+                if (moreSheet.classList.contains('open')) {
+                    closeMore();
+                } else {
+                    openMore();
+                }
+            });
+            moreOverlay.addEventListener('click', closeMore);
+            moreClose.addEventListener('click', closeMore);
+            moreSheet.querySelectorAll('.nav-link').forEach(function (link) {
+                link.addEventListener('click', closeMore);
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeMore();
+                }
+            });
+            // Close the sheet if the viewport grows to desktop size (avoid scroll-lock)
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 992) {
+                    closeMore();
+                }
+            });
+        });
+
+        // Dark / light theme toggle (sidebar + bottom nav)
+        document.addEventListener('DOMContentLoaded', function () {
+            var root = document.documentElement;
+            var toggles = document.querySelectorAll('.theme-toggle');
+
+            var saved = null;
+            try {
+                saved = localStorage.getItem('pahimna-theme');
+            } catch (e) { /* storage unavailable */ }
+            if (saved === 'light') {
+                root.setAttribute('data-theme', 'light');
+            } else if (saved !== 'dark') {
+                // No explicit choice: follow the system preference
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    root.setAttribute('data-theme', 'light');
+                } else {
+                    root.removeAttribute('data-theme');
+                }
+            }
+
+            function syncThemeUI() {
+                var isLight = root.getAttribute('data-theme') === 'light';
+                toggles.forEach(function (btn) {
+                    var icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.className = isLight ? 'la la-moon-o' : 'la la-sun-o';
+                    }
+                    btn.setAttribute('aria-pressed', String(isLight));
+                    btn.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+                });
+            }
+
+            var themeFadeTimer = null;
+
+            function setTheme(nextLight) {
+                if (nextLight) {
+                    root.setAttribute('data-theme', 'light');
+                } else {
+                    root.removeAttribute('data-theme');
+                }
+            }
+
+            function animateThemeSwitch(nextLight) {
+                var prefersReduced = false;
+                try {
+                    prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                } catch (e) { /* matchMedia unavailable */ }
+
+                // Reduced motion: switch instantly, no animation
+                if (prefersReduced) {
+                    setTheme(nextLight);
+                    return;
+                }
+
+                // Preferred: smooth full-page cross-fade via the View Transitions API
+                if (document.startViewTransition) {
+                    try {
+                        document.startViewTransition(function () {
+                            setTheme(nextLight);
+                        });
+                        return;
+                    } catch (e) { /* fall through to the color-fade fallback */ }
+                }
+
+                // Fallback: brief global color fade for browsers without the API
+                document.documentElement.classList.add('theme-transition');
+                setTheme(nextLight);
+                window.clearTimeout(themeFadeTimer);
+                themeFadeTimer = window.setTimeout(function () {
+                    document.documentElement.classList.remove('theme-transition');
+                }, 500);
+            }
+
+            toggles.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var isLight = root.getAttribute('data-theme') === 'light';
+                    animateThemeSwitch(!isLight);
+                    try {
+                        localStorage.setItem('pahimna-theme', isLight ? 'dark' : 'light');
+                    } catch (e) { /* storage unavailable */ }
+                    syncThemeUI();
+                });
+            });
+
+            // Live-follow the system theme until the visitor makes an explicit choice
+            var systemTheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+            if (saved !== 'light' && saved !== 'dark' && systemTheme && systemTheme.addEventListener) {
+                systemTheme.addEventListener('change', function () {
+                    var current = null;
+                    try {
+                        current = localStorage.getItem('pahimna-theme');
+                    } catch (e) { /* storage unavailable */ }
+                    if (current === 'light' || current === 'dark') {
+                        return; // the visitor chose a theme explicitly
+                    }
+                    animateThemeSwitch(systemTheme.matches);
+                    syncThemeUI();
+                });
+            }
+
+            syncThemeUI();
         });
     </script>
 </body>

@@ -190,3 +190,35 @@ h1 {
     .container { margin: 10px; padding: 20px; }
     .input-item { font-size: 0.95rem; }
 }
+
+/* ===== Light theme ===== */
+[data-theme="light"] body {
+    background: linear-gradient(135deg, #eef1fa 0%, #f7f9ff 40%, #f3edf7 60%, #eef1fa 100%);
+    background-size: 300% 300%;
+}
+
+[data-theme="light"] .container {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 8px 32px rgba(23, 29, 51, 0.14), 0 0 0 1px rgba(23, 29, 51, 0.08);
+}
+
+[data-theme="light"] h1 {
+    background: linear-gradient(90deg, #e11d48, #d97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="light"] .password-display {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(23, 29, 51, 0.18);
+    color: #0f766e;
+}
+
+[data-theme="light"] .input-item { color: #3f4a63; }
+
+[data-theme="light"] .input-item input {
+    border-color: rgba(23, 29, 51, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    color: #171d33;
+}

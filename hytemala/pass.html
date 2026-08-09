@@ -30,9 +30,50 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       referrerpolicy="no-referrer"
     />
     <title>Password Generator</title>
+    <script>
+        // Apply theme before paint to avoid a flash of the wrong theme:
+        // an explicit choice wins, otherwise follow the system preference
+        try {
+            var savedTheme = localStorage.getItem('pahimna-theme');
+            var systemLight = window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches;
+            if (savedTheme === 'light' || (savedTheme !== 'dark' && systemLight)) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        } catch (e) { }
+    </script>
     <link rel="stylesheet" href="cs/pser.css" />
+    <link rel="stylesheet" href="../design/line-awesome.min.css" />
+    <link rel="stylesheet" href="cs/bottomnav.css" />
   </head>
   <body>
+    <!-- Bottom navigation -->
+    <nav class="bottom-nav" id="bottomNav" aria-label="Bottom navigation">
+      <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
+      <a class="nav-link" href="../Klenn.html#home"><i class="la la-home"></i><span>Home</span></a>
+      <a class="nav-link" href="../Klenn.html#vlog"><i class="la la-play-circle"></i><span>Vlog</span></a>
+      <a class="nav-link" href="../Klenn.html#bsiscousin"><i class="la la-images"></i><span>Memories</span></a>
+      <a class="nav-link" href="../Klenn.html#cord"><i class="la la-code"></i><span>Projects</span></a>
+      <button class="nav-link more-btn" id="moreBtn" type="button" aria-expanded="false" aria-controls="moreSheet">
+        <i class="la la-ellipsis-h"></i><span>More</span>
+      </button>
+      <button class="nav-link theme-toggle" type="button" id="themeToggleNav" aria-pressed="false"
+        aria-label="Switch to light mode">
+        <i class="la la-sun-o"></i><span>Theme</span>
+      </button>
+    </nav>
+
+    <!-- "More" bottom sheet -->
+    <div class="more-overlay" id="moreOverlay"></div>
+    <div class="more-sheet" id="moreSheet" role="dialog" aria-label="More options">
+      <div class="more-sheet-handle"></div>
+      <a class="nav-link" href="../Klenn.html#edit"><i class="la la-film"></i><span>Editing</span></a>
+      <a class="nav-link" href="../Klenn.html#suggestion"><i class="la la-comment-dots"></i><span>Suggestion</span></a>
+      <hr />
+      <a class="nav-link" href="../info.html"><i class="la la-star"></i><span>Shortcuts</span></a>
+      <a class="nav-link" href="../terms&amp;regulation.html"><i class="la la-question-circle"></i><span>Help</span></a>
+      <button class="more-sheet-close" id="moreClose">Close</button>
+    </div>
     <a href="../Klenn.html" class="back-btn">← Back</a>
     <div class="container">
       <h1>Password Generator</h1>
@@ -80,5 +121,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
     <script src="java/pswel.js"></script>
     <script src="../JavaScript/security.js"></script>
+    <script src="java/bottomnav.js"></script>
   </body>
 </html>
