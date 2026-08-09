@@ -31,7 +31,7 @@ Pahimna is the personal website and creative hub of **Klenn Pahimna** — a port
 ## Tech Stack
 
 - **Frontend:** HTML5, CSS3, vanilla JavaScript, Bootstrap 5, Tailwind CSS (CDN), AOS scroll animations
-- **Backend:** Node.js + [Azure Functions](https://learn.microsoft.com/azure/azure-functions/) (`@azure/functions` v4)
+- **Backend:** Node.js + [Azure Functions](https://learn.microsoft.com/azure/azure-functions/) (`@azure/functions` v4) — includes a weather proxy that keeps the OpenWeatherMap API key server-side
 - **Icons & Fonts:** Line Awesome, Font Awesome, Material Symbols
 
 ## Getting Started
@@ -54,6 +54,29 @@ npm start
 
 Then open the site in your browser (e.g. `http://localhost:7071`), or simply open `HOME.html` directly.
 
+#### Weather API key
+
+The weather page (`hytemala/welder.html`) fetches forecasts through the server-side
+proxy in `src/functions/weather.js`, so the OpenWeatherMap key never ships to the
+browser. Provide it via the `WEATHER_API_KEY` environment variable — locally, add it
+under `Values` in `local.settings.json` (git-ignored):
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "WEATHER_API_KEY": "your-openweathermap-api-key"
+  }
+}
+```
+
+> **Note:** `npm run serve` (static-only preview) does **not** run the function host,
+> so the weather page needs `func start` (`npm start`) to be running to reach
+> `/api/weather`. The proxy endpoint is also CORS-open, so the static site can be
+> hosted separately from the Function App.
+
 ### Preview the static site (no install needed)
 
 Just want to browse the pages? No dependencies required:
@@ -69,6 +92,10 @@ Then open `http://localhost:8080` (use `npm run serve -- 3000` to pick a differe
 ```bash
 func azure functionapp publish <your-function-app-name>
 ```
+
+After publishing, set the `WEATHER_API_KEY` Application Setting on the Function App
+(Azure portal → your Function App → Configuration → Application settings, or
+`az functionapp config appsettings set`). Without it the weather proxy returns HTTP 500.
 
 ## Testing
 
@@ -96,7 +123,8 @@ The suite checks that every source file carries the GPL-3.0 notice, the HTML/CSS
 ├── src/                       # Azure Functions (Node.js)
 │   ├── index.js
 │   └── functions/
-│       └── httpTrigger1.js
+│       ├── httpTrigger1.js
+│       └── weather.js         # OpenWeatherMap proxy (key via WEATHER_API_KEY)
 ├── package.json
 ├── host.json                  # Azure Functions host configuration
 └── LICENSE

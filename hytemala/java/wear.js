@@ -22,7 +22,9 @@ const searchButton = document.querySelector("#search-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const daysForecastDiv = document.querySelector(".days-forecast");
 
-const API_KEY = "YOUR_OPENWEATHERMAP_API_KEY";
+// Weather is proxied through the Azure Function /api/weather so the
+// OpenWeatherMap API key stays server-side (see src/functions/weather.js).
+const WEATHER_API = "/api/weather";
 
 const createWeatherCard = (cityName, weatherItem, index) => {
     if (index === 0) {
@@ -54,9 +56,13 @@ const createWeatherCard = (cityName, weatherItem, index) => {
 }
 
 const getWeatherDetails = (cityName, latitude, longitude) => {
-    const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+    const WEATHER_API_URL = `${WEATHER_API}?lat=${latitude}&lon=${longitude}`;
 
-    fetch(WEATHER_API_URL).then(response => response.json()).then(data => {
+    fetch(WEATHER_API_URL).then(async response => {
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Weather service error");
+        return data;
+    }).then(data => {
         const forecastArray = data.list;
         const uniqueForecastDays = new Set();
 
@@ -81,22 +87,26 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
                 daysForecastDiv.insertAdjacentHTML("beforeend", html);
             }
         });        
-    }).catch(() => {
-        alert("An error occurred while fetching the weather forecast!");
+    }).catch((error) => {
+        alert(error.message || "An error occurred while fetching the weather forecast!");
     });
 }
 
 const getCityCoordinates = () => {
     const cityName = cityInput.value.trim();
     if (cityName === "") return;
-    const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
+    const API_URL = `${WEATHER_API}?city=${encodeURIComponent(cityName)}`;
   
-    fetch(API_URL).then(response => response.json()).then(data => {
+    fetch(API_URL).then(async response => {
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Weather service error");
+        return data;
+    }).then(data => {
         if (!data.length) return alert(`No coordinates found for ${cityName}`);
         const { lat, lon, name } = data[0];
         getWeatherDetails(name, lat, lon);
-    }).catch(() => {
-        alert("An error occurred while fetching the coordinates!");
+    }).catch((error) => {
+        alert(error.message || "An error occurred while fetching the coordinates!");
     });
 }
 

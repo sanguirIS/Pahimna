@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Weather proxy Azure Function (`src/functions/weather.js`): the OpenWeatherMap
+  API key is no longer embedded in client-side code — the weather page now calls
+  `/api/weather` and the key is read server-side from the `WEATHER_API_KEY`
+  environment variable (`local.settings.json` locally, an Application Setting in
+  Azure).
+
 ### Changed
 
 - Upgraded `@azure/functions` to `4.16.2` (resolves the `undici` vulnerabilities reported by `npm audit`/Dependabot).
