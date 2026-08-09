@@ -33,15 +33,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * CORS is open (Access-Control-Allow-Origin: *) so the page works both when
  * served by the Functions host (same origin) and from a separate static host.
- * Trade-off: the endpoint is anonymous and quota-consuming, so anyone could
- * burn the OpenWeatherMap quota by hammering it. Same abuse surface as the old
- * client-embedded key — acceptable for a personal site.
+ * A lightweight per-IP rate limit (see RATE_LIMIT_MAX below) stops a single
+ * client from burning the OpenWeatherMap quota. Note the counter is in-memory
+ * and per instance, so it is a deterrent rather than a hard global cap.
  */
 const { app } = require('@azure/functions');
 
 const OWM_BASE = 'https://api.openweathermap.org';
 
-function json(status, body) {
+function json(status, body, extraHeaders) {
     return {
         status,
         jsonBody: body,
@@ -49,14 +49,58 @@ function json(status, body) {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Cache-Control': 'no-store',
+            ...(extraHeaders || {}),
         },
     };
+}
+
+// --- Lightweight in-memory rate limiter (per instance) ---
+// Sliding window keyed by client IP. Tune these two constants as needed.
+const RATE_LIMIT_MAX = 30;          // requests allowed per window
+const RATE_LIMIT_WINDOW_MS = 60000; // one minute
+const RATE_LIMIT_MAX_IPS = 10000;   // prune idle entries once the map grows this large
+
+const rateBuckets = new Map(); // ip -> [timestamps]
+
+function clientIp(request) {
+    // Azure App Service / the Functions host set X-Forwarded-For to the real
+    // client address; locally there may be none, so fall back to a shared key.
+    const forwarded = request.headers.get('x-forwarded-for');
+    if (forwarded) {
+        return forwarded.split(',')[0].trim();
+    }
+    return 'unknown';
+}
+
+function isRateLimited(ip, now) {
+    const hits = (rateBuckets.get(ip) || []).filter(t => now - t < RATE_LIMIT_WINDOW_MS);
+    if (hits.length >= RATE_LIMIT_MAX) {
+        rateBuckets.set(ip, hits);
+        return true;
+    }
+    hits.push(now);
+    rateBuckets.set(ip, hits);
+    // Keep memory bounded: drop IPs whose windows have fully expired.
+    if (rateBuckets.size > RATE_LIMIT_MAX_IPS) {
+        for (const [key, times] of rateBuckets) {
+            if (!times.some(t => now - t < RATE_LIMIT_WINDOW_MS)) {
+                rateBuckets.delete(key);
+            }
+        }
+    }
+    return false;
 }
 
 app.http('weather', {
     methods: ['GET'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
+        if (isRateLimited(clientIp(request), Date.now())) {
+            return json(429, { error: 'Too many requests — please wait a minute and try again.' }, {
+                'Retry-After': String(Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)),
+            });
+        }
+
         const apiKey = process.env.WEATHER_API_KEY;
         if (!apiKey) {
             context.log.error('WEATHER_API_KEY is not set (local.settings.json / Function App settings).');

@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `/api/weather` and the key is read server-side from the `WEATHER_API_KEY`
   environment variable (`local.settings.json` locally, an Application Setting in
   Azure).
+- The weather proxy rate-limits requests per client IP (30/minute, sliding
+  window, `429` + `Retry-After` when exceeded) to protect the OpenWeatherMap
+  quota.
 
 ### Changed
 
