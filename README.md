@@ -77,6 +77,16 @@ under `Values` in `local.settings.json` (git-ignored):
 > `/api/weather`. The proxy endpoint is also CORS-open, so the static site can be
 > hosted separately from the Function App.
 
+> **Key rotation (completed):** the original OpenWeatherMap key was briefly exposed
+> in early commit history. It has been **rotated** (a new key was issued and the old
+> one deleted on the OpenWeatherMap dashboard) and the old value was **scrubbed from
+> git history** (history rewritten + force-pushed). Any old clones containing the old
+> string now hold a dead key. Going forward, `WEATHER_API_KEY` must **never** be
+> committed — keep it only in `local.settings.json` (git-ignored) and in the Azure
+> Function App's Application Settings. The proxy returns HTTP 500 if it is missing,
+> which is intentional so a misconfigured deployment fails loudly rather than silently
+> leaking requests to an unauthenticated upstream.
+
 ### Preview the static site (no install needed)
 
 Just want to browse the pages? No dependencies required:
