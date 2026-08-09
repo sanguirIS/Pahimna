@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgraded `@azure/functions` to `4.16.2` (resolves the `undici` vulnerabilities reported by `npm audit`/Dependabot).
+
 ### Added
 
 - `npm run serve` — dependency-free static preview server (`scripts/serve.js`) for browsing the site locally without the Azure Functions host.
