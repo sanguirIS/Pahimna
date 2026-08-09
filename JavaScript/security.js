@@ -121,4 +121,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         }
     `;
     document.head.appendChild(style);
+
+    // Prevent downloading videos by dragging them out of the page.
+    // (Right-click "Save video as..." is already blocked by the global
+    // context-menu handler above.)
+    document.addEventListener('dragstart', function (e) {
+        if (e.target && e.target.tagName === 'VIDEO') {
+            e.preventDefault();
+            return false;
+        }
+    });
 })();

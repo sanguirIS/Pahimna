@@ -41,7 +41,7 @@ const HTML_FILES = [
   'hytemala/Pinsan.html', 'hytemala/stibsis.html', 'hytemala/welder.html',
 ];
 const JS_FILES = [
-  'JavaScript/babagi.js', 'JavaScript/codis.js', 'JavaScript/port.js',
+  'JavaScript/babagi.js', 'JavaScript/backtab.js', 'JavaScript/codis.js', 'JavaScript/port.js',
   'JavaScript/security.js', 'JavaScript/waiting.js',
   'hytemala/java/kalkol.js', 'hytemala/java/pswel.js', 'hytemala/java/wear.js',
   'src/index.js', 'src/functions/httpTrigger1.js',

@@ -1,0 +1,85 @@
+<!--
+Pahimna - personal website and creative hub.
+Copyright (C) 2026 DJKAM & DEVKLENN
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!--
+  ALTERNATIVE SUGGESTION FORM — sends an auto-confirmation email to the visitor.
+
+  This is a drop-in replacement for the Suggestion form in Klenn.html. It uses
+  FormSubmit's "_autoresponse" field, which emails the visitor a copy of their
+  submission plus a custom message (FormSubmit docs: "You can send an instant
+  response to your users with a copy of the submission").
+
+  IMPORTANT — FormSubmit's requirements for _autoresponse:
+    1. Classic (non-AJAX) submission. The form below has NO data-ajax attribute,
+       so babagi.js lets the browser submit it natively (no code changes needed).
+    2. Captcha must stay ENABLED. Do NOT add <input name="_captcha" value="false">.
+    Trade-off: visitors may see a reCAPTCHA and get redirected to FormSubmit's
+    thank-you page after submitting (instead of staying on the page).
+
+  HOW TO DEPLOY:
+    1. Open Klenn.html and locate the Suggestion <form ... data-ajax="true">...
+       </form> block (it also contains _replyto and _captcha hidden inputs).
+    2. Replace that entire <form>...</form> block with the <form> block below.
+    3. Customize the _autoresponse message to your liking.
+    4. Done — babagi.js handles both modes automatically.
+-->
+
+<form action="https://formsubmit.co/pahimna294klenn@gmail.com" method="POST" class="row g-lg-3 gy-3 needs-validation" novalidate>
+    <!-- Spam protection: invisible honeypot (humans never fill it) -->
+    <input type="text" name="_honey" class="d-none" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <!-- Auto-confirmation email sent to the visitor (uses their 'email' field) -->
+    <input type="hidden" name="_autoresponse"
+           value="Salamat sa iyong suggestion! Thank you for your message. We have received it and will reply soon. — Klenn Pahimna">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_subject" value="New Suggestion from Pahimna">
+    <div class="form-group col-sm-12 col-md-6">
+        <label for="name" class="form-label visually-hidden">Name</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="la la-user"></i></span>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name" required pattern="[\p{L}\s'.'-]+" autocomplete="name">
+            <div class="invalid-feedback">Please enter a valid name.</div>
+        </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-6">
+        <label for="email" class="form-label visually-hidden">Email</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="la la-envelope"></i></span>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Enter your Email" required autocomplete="email">
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+    </div>
+    <div class="form-group col-12">
+        <label for="subject" class="form-label visually-hidden">Subject</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="la la-heading"></i></span>
+            <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject" required>
+            <div class="invalid-feedback">Please enter a subject.</div>
+        </div>
+    </div>
+    <div class="form-group col-12">
+        <label for="message" class="form-label visually-hidden">Message</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="la la-comment"></i></span>
+            <textarea rows="4" class="form-control" id="message" name="message" placeholder="Enter your Message" required></textarea>
+            <div class="invalid-feedback">Please enter your message.</div>
+        </div>
+    </div>
+    <div class="form-group col-12 d-grid mt-3">
+        <button type="submit" class="btn btn-brand btn-lg">Send Message</button>
+    </div>
+</form>
