@@ -1,6 +1,7 @@
 # Pahimna
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![CI](https://github.com/sanguirIS/Pahimna/actions/workflows/ci.yml/badge.svg)](https://github.com/sanguirIS/Pahimna/actions/workflows/ci.yml)
 
 Pahimna is the personal website and creative hub of **Klenn Pahimna** — a portfolio, vlog showcase, family memories gallery, and a collection of web tools (weather, password generator, photo editor), built with vanilla HTML/CSS/JavaScript and an Azure Functions backend.
 
@@ -68,6 +69,16 @@ Then open `http://localhost:8080` (use `npm run serve -- 3000` to pick a differe
 ```bash
 func azure functionapp publish <your-function-app-name>
 ```
+
+## Testing
+
+Smoke tests run automatically in CI on every push and pull request. Run them locally with:
+
+```bash
+npm test
+```
+
+The suite checks that every source file carries the GPL-3.0 notice, the HTML/CSS/JS files are structurally sound, all JavaScript parses, and the site serves correctly over HTTP.
 
 ## Project Structure
 

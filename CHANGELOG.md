@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `npm run serve` — dependency-free static preview server (`scripts/serve.js`) for browsing the site locally without the Azure Functions host.
+- `npm test` — permanent smoke test (`scripts/smoke-test.js`) covering GPL notice headers, file structure, JS syntax, and HTTP serving of the site.
+- GitHub Actions CI workflow (`.github/workflows/ci.yml`) that runs the smoke tests on every push to `main` and on pull requests.
 
 ## [1.0.0] - 2026-08-09
 

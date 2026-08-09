@@ -20,16 +20,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
  * Minimal static file server for previewing the Pahimna website locally.
  * No dependencies - uses only Node.js built-ins.
  *
- * Usage:
+ * CLI usage:
  *   npm run serve            # serves on http://localhost:8080
  *   npm run serve -- 3000    # serves on http://localhost:3000
+ *
+ * Programmatic usage (used by scripts/smoke-test.js):
+ *   const { createServer } = require('./serve');
+ *   createServer(ROOT).listen(port, ...);
  */
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-
-const ROOT = path.resolve(__dirname, '..');
-const DEFAULT_PORT = 8080;
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -53,37 +54,46 @@ const MIME_TYPES = {
   '.txt': 'text/plain; charset=utf-8',
 };
 
-const server = http.createServer((req, res) => {
-  const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
-  const rel = urlPath === '/' ? 'HOME.html' : urlPath.replace(/^\/+/, '');
+function createServer(rootDir) {
+  const ROOT = path.resolve(rootDir);
 
-  // Resolve the requested path and block traversal outside the project root.
-  const filePath = path.resolve(ROOT, rel);
-  if (filePath !== ROOT && !filePath.startsWith(ROOT + path.sep)) {
-    res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('403 Forbidden');
-    return;
-  }
+  return http.createServer((req, res) => {
+    const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
+    const rel = urlPath === '/' ? 'HOME.html' : urlPath.replace(/^\/+/, '');
 
-  fs.stat(filePath, (err, stat) => {
-    if (err || !stat.isFile()) {
-      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-      res.end('404 Not Found - ' + rel);
+    // Resolve the requested path and block traversal outside the project root.
+    const filePath = path.resolve(ROOT, rel);
+    if (filePath !== ROOT && !filePath.startsWith(ROOT + path.sep)) {
+      res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('403 Forbidden');
       return;
     }
-    res.writeHead(200, {
-      'Content-Type':
-        MIME_TYPES[path.extname(filePath).toLowerCase()] ||
-        'application/octet-stream',
-      'Content-Length': stat.size,
-    });
-    fs.createReadStream(filePath).pipe(res);
-  });
-});
 
-const port = parseInt(process.argv[2], 10) || DEFAULT_PORT;
-server.listen(port, () => {
-  console.log('Pahimna preview server running:');
-  console.log('  Local:   http://localhost:' + port + '/');
-  console.log('  Press Ctrl+C to stop.');
-});
+    fs.stat(filePath, (err, stat) => {
+      if (err || !stat.isFile()) {
+        res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+        res.end('404 Not Found - ' + rel);
+        return;
+      }
+      res.writeHead(200, {
+        'Content-Type':
+          MIME_TYPES[path.extname(filePath).toLowerCase()] ||
+          'application/octet-stream',
+        'Content-Length': stat.size,
+      });
+      fs.createReadStream(filePath).pipe(res);
+    });
+  });
+}
+
+module.exports = { createServer };
+
+if (require.main === module) {
+  const DEFAULT_PORT = 8080;
+  const port = parseInt(process.argv[2], 10) || DEFAULT_PORT;
+  createServer(path.resolve(__dirname, '..')).listen(port, () => {
+    console.log('Pahimna preview server running:');
+    console.log('  Local:   http://localhost:' + port + '/');
+    console.log('  Press Ctrl+C to stop.');
+  });
+}

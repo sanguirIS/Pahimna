@@ -6,7 +6,7 @@
   "scripts": {
     "start": "func start",
     "serve": "node scripts/serve.js",
-    "test": "echo \"No tests yet...\""
+    "test": "node scripts/smoke-test.js"
   },
   "dependencies": {
     "@azure/functions": "^4.0.0"
