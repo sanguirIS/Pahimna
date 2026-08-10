@@ -107,6 +107,25 @@ After publishing, set the `WEATHER_API_KEY` Application Setting on the Function 
 (Azure portal → your Function App → Configuration → Application settings, or
 `az functionapp config appsettings set`). Without it the weather proxy returns HTTP 500.
 
+#### Automatic deploys with GitHub Actions
+
+The repository includes `.github/workflows/deploy-function.yml`, which deploys the
+Function App automatically on every push to `main`. It only runs once the one-time
+setup below is complete:
+
+1. **Create an Azure account** — [azure.microsoft.com/free](https://azure.microsoft.com/free/) (the free tier is plenty for this).
+2. **Create a Function App** — Azure portal → *Create a resource* → *Function App*: runtime stack **Node.js 20**, operating system **Linux**, plan **Consumption (serverless)**, region nearest to you.
+3. **Set the API key** — open the Function App → *Configuration → Application settings* and add `WEATHER_API_KEY` with your OpenWeatherMap key. The proxy returns HTTP 500 without it.
+4. **Grab the publish profile** — Function App → *Overview → Get Publish Profile*.
+5. **Add GitHub secrets** — repository → *Settings → Secrets and variables → Actions*:
+   - `AZURE_FUNCTIONAPP_NAME` — your Function App name (e.g. `pahimna-api`)
+   - `AZURE_FUNCTIONAPP_PUBLISH_PROFILE` — the publish profile XML from step 4
+6. **Point the page at the proxy** — in `hytemala/java/wear.js` set `PROXY_ORIGIN` to `"https://<your-function-app-name>.azurewebsites.net"` (leave it `""` for local development with `npm start`).
+
+After that, every push to `main` redeploys the function automatically. The weather page
+hosted on GitHub Pages reaches the proxy through `PROXY_ORIGIN`, and the OpenWeatherMap
+key never appears in the page source.
+
 ## Testing
 
 Smoke tests run automatically in CI on every push and pull request. Run them locally with:
