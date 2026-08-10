@@ -193,54 +193,13 @@ document.addEventListener('DOMContentLoaded', function () {
       setLoading(false);
     });
 
-    // Email-delivery status check (for the site owner). Probes FormSubmit's API
-    // to see whether the recipient account is activated. This is opt-in (button
-    // click) on purpose: probing an activated account makes FormSubmit email the
-    // API key to the owner, so it must never auto-run from every visitor's browser.
-    const ownerEmail = form.action.split('https://formsubmit.co/')[1];
+    // Activation notice (shown only when relevant): the warning is surfaced
+    // when a submission reports a pending FormSubmit account activation.
     const activationWarning = document.getElementById('formActivationWarning');
-    const activationOk = document.getElementById('formActivationOk');
-    const checkActivationBtn = document.getElementById('checkActivationBtn');
 
     function showActivationWarning(show) {
       if (!activationWarning) return;
       activationWarning.classList.toggle('d-none', !show);
-      if (activationOk && show) activationOk.classList.add('d-none');
-    }
-
-    function showActivationOk(show) {
-      if (!activationOk) return;
-      activationOk.classList.toggle('d-none', !show);
-      if (activationWarning && show) activationWarning.classList.add('d-none');
-    }
-
-    if (checkActivationBtn && ownerEmail) {
-      checkActivationBtn.addEventListener('click', async () => {
-        const label = checkActivationBtn.innerHTML;
-        checkActivationBtn.disabled = true;
-        checkActivationBtn.innerHTML = 'Checking...';
-        try {
-          const response = await fetch(
-            'https://formsubmit.co/api/get-apikey/' + ownerEmail,
-            { headers: { 'Accept': 'application/json' } }
-          );
-          const data = await response.json();
-          if (data && data.success === true) {
-            showActivationOk(true);
-          } else {
-            showActivationWarning(true);
-          }
-        } catch (error) {
-          // Offline / unreachable — say so instead of silently doing nothing
-          showFormStatus('warning', 'Could not reach FormSubmit. Check your connection and try again.');
-        } finally {
-          // Cool-down so repeat clicks can't trigger endless API-key emails
-          checkActivationBtn.innerHTML = label;
-          window.setTimeout(function () {
-            checkActivationBtn.disabled = false;
-          }, 30000);
-        }
-      });
     }
   });
 });

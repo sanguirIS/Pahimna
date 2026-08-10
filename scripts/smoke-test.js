@@ -38,20 +38,19 @@ const ROOT = path.resolve(__dirname, '..');
 const HTML_FILES = [
   'HOME.html', 'Klenn.html', 'info.html', 'waiting.html', 'terms&regulation.html',
   'hytemala/jcls.html', 'hytemala/pass.html', 'hytemala/pectol.html',
-  'hytemala/Pinsan.html', 'hytemala/stibsis.html', 'hytemala/welder.html',
+  'hytemala/Pinsan.html', 'hytemala/stibsis.html',
 ];
 const JS_FILES = [
   'JavaScript/babagi.js', 'JavaScript/backtab.js', 'JavaScript/codis.js', 'JavaScript/port.js',
   'JavaScript/security.js', 'JavaScript/waiting.js',
-  'hytemala/java/kalkol.js', 'hytemala/java/pswel.js', 'hytemala/java/wear.js',
-  'src/index.js', 'src/functions/httpTrigger1.js', 'src/functions/weather.js',
+  'hytemala/java/kalkol.js', 'hytemala/java/pswel.js',
   'scripts/serve.js', 'scripts/smoke-test.js',
 ];
 const CSS_FILES = [
   'design/codi.css', 'design/Ohjie.css', 'design/port.css',
   'design/TRrules.css', 'design/waiting.css',
   'hytemala/cs/Cousin.css', 'hytemala/cs/jakel.css', 'hytemala/cs/jclsfamily.css',
-  'hytemala/cs/pser.css', 'hytemala/cs/stibsisone.css', 'hytemala/cs/wed.css',
+  'hytemala/cs/pser.css', 'hytemala/cs/stibsisone.css',
 ];
 
 // Pages/assets served over HTTP, with the expected status code.
@@ -62,7 +61,6 @@ const HTTP_TARGETS = [
   { path: '/info.html', status: 200 },
   { path: '/terms&regulation.html', status: 200 },
   { path: '/waiting.html', status: 200 },
-  { path: '/hytemala/welder.html', status: 200 },
   { path: '/design/port.css', status: 200 },
   { path: '/JavaScript/codis.js', status: 200 },
   { path: '/does-not-exist.html', status: 404 },

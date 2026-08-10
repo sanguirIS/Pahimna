@@ -62,28 +62,7 @@
 │   ├── 📁 font
 │   │   └── 📄 material-symbol-rounded.woff2
 │   ├── 📁 images
-│   │   ├── 📁 weather_icons
-│   │   │   ├── 🖼️ 01d.png
-│   │   │   ├── 🖼️ 01n.png
-│   │   │   ├── 🖼️ 02d.png
-│   │   │   ├── 🖼️ 02n.png
-│   │   │   ├── 🖼️ 03d.png
-│   │   │   ├── 🖼️ 03n.png
-│   │   │   ├── 🖼️ 04d.png
-│   │   │   ├── 🖼️ 04n.png
-│   │   │   ├── 🖼️ 09d.png
-│   │   │   ├── 🖼️ 09n.png
-│   │   │   ├── 🖼️ 10d.png
-│   │   │   ├── 🖼️ 10n.png
-│   │   │   ├── 🖼️ 11d.png
-│   │   │   ├── 🖼️ 11n.png
-│   │   │   ├── 🖼️ 13d.png
-│   │   │   ├── 🖼️ 13n.png
-│   │   │   ├── 🖼️ 50d.png
-│   │   │   ├── 🖼️ 50n.png
-│   │   │   └── 🖼️ direction.png
 │   │   ├── 🖼️ logo.png
-│   │   └── 🖼️ openweather.png
 │   └── 📁 js
 ├── 📁 design
 │   ├── 🎨 Ohjie.css
@@ -121,12 +100,10 @@
 │   │   ├── 🖼️ sanguir_160148-removebg-preview.png
 │   │   ├── 🖼️ sti-removebg-preview.png
 │   │   ├── 🎨 stibsisone.css
-│   │   ├── 🖼️ taasing.png
-│   │   └── 🎨 wed.css
+│   │   └── 🖼️ taasing.png
 │   ├── 📁 java
 │   │   ├── 📄 kalkol.js
-│   │   ├── 📄 pswel.js
-│   │   └── 📄 wear.js
+│   │   └── 📄 pswel.js
 │   ├── 📁 pic
 │   │   ├── 🖼️ 04907f6d2e3d6b095943628027224f80.jpg
 │   │   ├── 🖼️ 0930f85cfffd6f5f255d8b7ef75e0878.jpg
@@ -163,19 +140,12 @@
 │   ├── 🌐 jcls.html
 │   ├── 🌐 pass.html
 │   ├── 🌐 pectol.html
-│   ├── 🌐 stibsis.html
-│   └── 🌐 welder.html
-├── 📁 src
-│   ├── 📁 functions
-│   │   └── 📄 httpTrigger1.js
-│   └── 📄 index.js
-├── ⚙️ .funcignore
+│   └── 🌐 stibsis.html
 ├── ⚙️ .gitignore
 ├── 🌐 HOME.html
 ├── 🌐 Klenn.html
 ├── 📄 LICENSE
 ├── 📝 README.md
-├── ⚙️ host.json
 ├── 🌐 info.html
 ├── ⚙️ package-lock.json
 ├── ⚙️ package.json

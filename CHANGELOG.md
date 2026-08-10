@@ -7,23 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-- Weather proxy Azure Function (`src/functions/weather.js`): the OpenWeatherMap
-  API key is no longer embedded in client-side code — the weather page now calls
-  `/api/weather` and the key is read server-side from the `WEATHER_API_KEY`
-  environment variable (`local.settings.json` locally, an Application Setting in
-  Azure).
-- The weather proxy rate-limits requests per client IP (30/minute, sliding
-  window, `429` + `Retry-After` when exceeded) to protect the OpenWeatherMap
-  quota.
-
-### Changed
-
-- Upgraded `@azure/functions` to `4.16.2` (resolves the `undici` vulnerabilities reported by `npm audit`/Dependabot).
-
 ### Removed
 
+- Weather feature — removed the weather page (`hytemala/welder.html`), its
+  scripts/styles (`hytemala/java/wear.js`, `hytemala/cs/wed.css`), the
+  OpenWeatherMap proxy (`src/functions/weather.js`), the `weather_icons`
+  assets, and all in-site links to the weather tool.
+- Azure Functions backend — the weather proxy was its only real use, so the
+  whole backend went: `src/` (including the default `httpTrigger1.js`),
+  `host.json`, the `@azure/functions` dependency, the `npm start` script,
+  and the `.github/workflows/deploy-function.yml` deploy workflow. The site
+  is now fully static (GitHub Pages).
 - `CONTRIBUTING.md` — contribution guidelines file.
 
 ## [1.0.0] - 2026-08-09

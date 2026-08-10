@@ -3,7 +3,7 @@
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![CI](https://github.com/sanguirIS/Pahimna/actions/workflows/ci.yml/badge.svg)](https://github.com/sanguirIS/Pahimna/actions/workflows/ci.yml)
 
-Pahimna is the personal website and creative hub of **Klenn Pahimna** — a portfolio, vlog showcase, family memories gallery, and a collection of web tools (weather, password generator, photo editor), built with vanilla HTML/CSS/JavaScript and an Azure Functions backend.
+Pahimna is the personal website and creative hub of **Klenn Pahimna** — a portfolio, vlog showcase, family memories gallery, and a collection of web tools (password generator, photo editor), built with vanilla HTML/CSS/JavaScript.
 
 > Developed by [Klenn Pahimna](https://github.com/sanguirIS) — Balbalungao, Lupao, Nueva Ecija, Philippines
 
@@ -13,9 +13,8 @@ Pahimna is the personal website and creative hub of **Klenn Pahimna** — a port
 - **Personal portfolio** — skills, education, certifications & achievements (`info.html`)
 - **Vlog showcase** — YouTube channel highlights and personal videos (`Klenn.html`)
 - **Memories gallery** — family, school, and community photo/video collections (`hytemala/`)
-- **Web tools** — weather app, password idea generator, photo editor (`hytemala/welder.html`, `hytemala/pass.html`, `hytemala/pectol.html`)
+- **Web tools** — password idea generator, photo editor (`hytemala/pass.html`, `hytemala/pectol.html`)
 - **Suggestion box** — feedback form powered by FormSubmit
-- **Serverless API** — HTTP endpoint via Azure Functions (`src/`)
 
 ## Pages
 
@@ -26,105 +25,25 @@ Pahimna is the personal website and creative hub of **Klenn Pahimna** — a port
 | `info.html` | Personal portfolio & certifications |
 | `waiting.html` | "Coming soon" / waiting page |
 | `terms&regulation.html` | Site terms & regulations |
-| `hytemala/` | Sub-pages: family memories, weather, passwords, photo editor |
+| `hytemala/` | Sub-pages: family memories, passwords, photo editor |
 
 ## Tech Stack
 
 - **Frontend:** HTML5, CSS3, vanilla JavaScript, Bootstrap 5, Tailwind CSS (CDN), AOS scroll animations
-- **Backend:** Node.js + [Azure Functions](https://learn.microsoft.com/azure/azure-functions/) (`@azure/functions` v4) — includes a weather proxy that keeps the OpenWeatherMap API key server-side
 - **Icons & Fonts:** Line Awesome, Font Awesome, Material Symbols
 
 ## Getting Started
 
-### Prerequisites
-
-- [Node.js 18+](https://nodejs.org/)
-- [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
-- An [Azure subscription](https://azure.microsoft.com/free/) (only required for deployment)
-
 ### Run locally
 
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Start the Azure Functions host (serves the API alongside the static site)
-npm start
-```
-
-Then open the site in your browser (e.g. `http://localhost:7071`), or simply open `HOME.html` directly.
-
-#### Weather API key
-
-The weather page (`hytemala/welder.html`) fetches forecasts through the server-side
-proxy in `src/functions/weather.js`, so the OpenWeatherMap key never ships to the
-browser. Provide it via the `WEATHER_API_KEY` environment variable — locally, add it
-under `Values` in `local.settings.json` (git-ignored):
-
-```json
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
-    "WEATHER_API_KEY": "your-openweathermap-api-key"
-  }
-}
-```
-
-> **Note:** `npm run serve` (static-only preview) does **not** run the function host,
-> so the weather page needs `func start` (`npm start`) to be running to reach
-> `/api/weather`. The proxy endpoint is also CORS-open, so the static site can be
-> hosted separately from the Function App.
-
-> **Key rotation (completed):** the original OpenWeatherMap key was briefly exposed
-> in early commit history. It has been **rotated** (a new key was issued and the old
-> one deleted on the OpenWeatherMap dashboard) and the old value was **scrubbed from
-> git history** (history rewritten + force-pushed). Any old clones containing the old
-> string now hold a dead key. Going forward, `WEATHER_API_KEY` must **never** be
-> committed — keep it only in `local.settings.json` (git-ignored) and in the Azure
-> Function App's Application Settings. The proxy returns HTTP 500 if it is missing,
-> which is intentional so a misconfigured deployment fails loudly rather than silently
-> leaking requests to an unauthenticated upstream.
-
-### Preview the static site (no install needed)
-
-Just want to browse the pages? No dependencies required:
+The site is fully static — no build step or dependencies required. Either open
+`HOME.html` directly in your browser, or use the preview server:
 
 ```bash
 npm run serve
 ```
 
 Then open `http://localhost:8080` (use `npm run serve -- 3000` to pick a different port).
-
-### Deploy to Azure
-
-```bash
-func azure functionapp publish <your-function-app-name>
-```
-
-After publishing, set the `WEATHER_API_KEY` Application Setting on the Function App
-(Azure portal → your Function App → Configuration → Application settings, or
-`az functionapp config appsettings set`). Without it the weather proxy returns HTTP 500.
-
-#### Automatic deploys with GitHub Actions
-
-The repository includes `.github/workflows/deploy-function.yml`, which deploys the
-Function App automatically on every push to `main`. It only runs once the one-time
-setup below is complete:
-
-1. **Create an Azure account** — [azure.microsoft.com/free](https://azure.microsoft.com/free/) (the free tier is plenty for this).
-2. **Create a Function App** — Azure portal → *Create a resource* → *Function App*: runtime stack **Node.js 20**, operating system **Linux**, plan **Consumption (serverless)**, region nearest to you.
-3. **Set the API key** — open the Function App → *Configuration → Application settings* and add `WEATHER_API_KEY` with your OpenWeatherMap key. The proxy returns HTTP 500 without it.
-4. **Grab the publish profile** — Function App → *Overview → Get Publish Profile*.
-5. **Add GitHub secrets** — repository → *Settings → Secrets and variables → Actions*:
-   - `AZURE_FUNCTIONAPP_NAME` — your Function App name (e.g. `pahimna-api`)
-   - `AZURE_FUNCTIONAPP_PUBLISH_PROFILE` — the publish profile XML from step 4
-6. **Point the page at the proxy** — in `hytemala/java/wear.js` set `PROXY_ORIGIN` to `"https://<your-function-app-name>.azurewebsites.net"` (leave it `""` for local development with `npm start`).
-
-After that, every push to `main` redeploys the function automatically. The weather page
-hosted on GitHub Pages reaches the proxy through `PROXY_ORIGIN`, and the OpenWeatherMap
-key never appears in the page source.
 
 ## Testing
 
@@ -149,13 +68,7 @@ The suite checks that every source file carries the GPL-3.0 notice, the HTML/CSS
 ├── assets/                    # Fonts and images
 ├── fonts/                     # Icon font files (Line Awesome)
 ├── hytemala/                  # Sub-pages & tools
-├── src/                       # Azure Functions (Node.js)
-│   ├── index.js
-│   └── functions/
-│       ├── httpTrigger1.js
-│       └── weather.js         # OpenWeatherMap proxy (key via WEATHER_API_KEY)
 ├── package.json
-├── host.json                  # Azure Functions host configuration
 └── LICENSE
 ```
 

@@ -20,7 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 /**
  * Smart "Back" button (sub-pages).
  *
- * The sub-pages (weather, password ideas, photo editor, memories, etc.) show a
+ * The sub-pages (password ideas, photo editor, memories, etc.) show a
  * "← Back" link. When that tab was opened as a fresh tab (e.g. from a link),
  * clicking "← Back" closes the tab; otherwise it goes back to the previous
  * page. Falls back to the plain href if JavaScript is unavailable.

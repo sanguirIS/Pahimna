@@ -300,114 +300,7 @@
           "icon": "📁",
           "children": [
             {
-              "name": "weather_icons",
-              "type": "folder",
-              "icon": "📁",
-              "children": [
-                {
-                  "name": "01d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "01n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "02d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "02n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "03d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "03n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "04d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "04n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "09d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "09n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "10d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "10n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "11d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "11n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "13d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "13n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "50d.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "50n.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                },
-                {
-                  "name": "direction.png",
-                  "type": "file",
-                  "icon": "🖼️"
-                }
-              ]
-            },
-            {
               "name": "logo.png",
-              "type": "file",
-              "icon": "🖼️"
-            },
-            {
-              "name": "openweather.png",
               "type": "file",
               "icon": "🖼️"
             }
@@ -608,11 +501,6 @@
               "name": "taasing.png",
               "type": "file",
               "icon": "🖼️"
-            },
-            {
-              "name": "wed.css",
-              "type": "file",
-              "icon": "🎨"
             }
           ]
         },
@@ -628,11 +516,6 @@
             },
             {
               "name": "pswel.js",
-              "type": "file",
-              "icon": "📜"
-            },
-            {
-              "name": "wear.js",
               "type": "file",
               "icon": "📜"
             }
@@ -824,43 +707,10 @@
           "name": "stibsis.html",
           "type": "file",
           "icon": "🌐"
-        },
-        {
-          "name": "welder.html",
-          "type": "file",
-          "icon": "🌐"
         }
       ]
     },
-    {
-      "name": "src",
-      "type": "folder",
-      "icon": "📁",
-      "children": [
-        {
-          "name": "functions",
-          "type": "folder",
-          "icon": "📁",
-          "children": [
-            {
-              "name": "httpTrigger1.js",
-              "type": "file",
-              "icon": "📜"
-            }
-          ]
-        },
-        {
-          "name": "index.js",
-          "type": "file",
-          "icon": "📜"
-        }
-      ]
-    },
-    {
-      "name": ".funcignore",
-      "type": "file",
-      "icon": "📄"
-    },
+
     {
       "name": ".gitignore",
       "type": "file",
@@ -885,11 +735,6 @@
       "name": "README.md",
       "type": "file",
       "icon": "📝"
-    },
-    {
-      "name": "host.json",
-      "type": "file",
-      "icon": "⚙️"
     },
     {
       "name": "info.html",
