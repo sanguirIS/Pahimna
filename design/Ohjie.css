@@ -888,3 +888,129 @@ body.sheet-open { overflow: hidden; }
     transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease !important;
     transition-delay: 0 !important;
 }
+
+/* ===== Modern 3D hero type (Klenn.html) =====
+ * The hero heading is split into stacked lines: white extruded name lines and
+ * an animated flowing gradient brand line with 3D extrusion, a moving sheen,
+ * and a mouse-follow tilt (see babagi.js). Mirrors the info.html treatment. */
+.hero-title {
+    position: relative;
+    display: block;
+    perspective: 900px;
+    animation: hero-float 6s ease-in-out infinite;
+    will-change: transform;
+}
+
+.hero-title-inner {
+    display: block;
+    transform-style: preserve-3d;
+    transition: transform 0.18s ease-out;
+    will-change: transform;
+}
+
+.title-3d-line {
+    display: block;
+    transform: translateZ(34px);
+}
+
+/* White extruded lines */
+.title-3d-name {
+    color: #ffffff;
+    text-shadow:
+        0 1px 0 rgba(232, 232, 244, 0.9),
+        0 2px 0 rgba(205, 205, 226, 0.85),
+        0 3px 0 rgba(178, 178, 205, 0.8),
+        0 4px 0 rgba(150, 150, 184, 0.75),
+        0 8px 18px rgba(0, 0, 0, 0.55),
+        0 0 34px rgba(56, 189, 248, 0.28);
+}
+
+/* Animated flowing gradient brand line with 3D extrusion + shine sweep */
+.title-3d-gradient {
+    position: relative;
+    background: linear-gradient(100deg, #38bdf8 0%, #3b82f6 28%, #6366f1 52%, #3b82f6 76%, #38bdf8 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: hero-gradient-flow 5s linear infinite;
+    filter:
+        drop-shadow(0 2px 0 rgba(59, 130, 246, 0.55))
+        drop-shadow(0 4px 0 rgba(49, 108, 216, 0.45))
+        drop-shadow(0 6px 0 rgba(41, 88, 190, 0.38))
+        drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 0 38px rgba(56, 189, 248, 0.4));
+}
+
+/* Sheen that sweeps across the gradient text */
+.title-3d-gradient::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.85) 50%, transparent 70%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: hero-shine 4s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@keyframes hero-gradient-flow {
+    from { background-position: 0% center; }
+    to { background-position: 220% center; }
+}
+
+@keyframes hero-shine {
+    0% { background-position: 200% center; }
+    55%, 100% { background-position: -200% center; }
+}
+
+/* Light theme: swap the white extrusion for dark embossed text */
+[data-theme="light"] .title-3d-name {
+    color: #171d33;
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.95),
+        0 2px 0 rgba(224, 228, 244, 0.9),
+        0 3px 0 rgba(198, 204, 226, 0.85),
+        0 4px 0 rgba(172, 178, 208, 0.8),
+        0 8px 18px rgba(23, 29, 51, 0.16),
+        0 0 30px rgba(56, 189, 248, 0.35);
+}
+
+[data-theme="light"] .title-3d-gradient {
+    filter:
+        drop-shadow(0 2px 0 rgba(59, 130, 246, 0.3))
+        drop-shadow(0 4px 0 rgba(49, 108, 216, 0.24))
+        drop-shadow(0 6px 0 rgba(41, 88, 190, 0.18))
+        drop-shadow(0 10px 24px rgba(23, 29, 51, 0.22))
+        drop-shadow(0 0 34px rgba(56, 189, 248, 0.3));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-title,
+    .title-3d-gradient,
+    .title-3d-gradient::after {
+        animation: none;
+    }
+    .hero-title-inner {
+        transition: none;
+    }
+}
+
+/* Graceful fallback if text-clipped backgrounds are unsupported */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .title-3d-gradient {
+        color: #3b82f6;
+        -webkit-text-fill-color: currentColor;
+    }
+    .title-3d-gradient::after {
+        display: none;
+    }
+}

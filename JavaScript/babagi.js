@@ -192,3 +192,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
   });
 });
+
+// Modern 3D tilt for the hero title (Klenn.html): rotate the stacked lines in
+// 3D space following the mouse, then settle back flat on mouse leave.
+document.addEventListener('DOMContentLoaded', function () {
+  const title = document.querySelector('.hero-title');
+  const inner = document.querySelector('.hero-title-inner');
+  if (!title || !inner) return;
+
+  let reduceMotion = false;
+  try {
+    reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (e) { /* matchMedia unavailable */ }
+
+  let rafId = null;
+
+  title.addEventListener('mousemove', (e) => {
+    if (reduceMotion) return;
+    if (rafId) cancelAnimationFrame(rafId);
+    // Track the cursor immediately: disable the CSS transition while moving so
+    // the tilt does not lag behind the pointer, and re-enable it on leave so
+    // the settle-back is eased.
+    inner.style.transition = 'none';
+    rafId = requestAnimationFrame(() => {
+      const rect = title.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      const px = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 .. 0.5
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      const rx = (-py * 14).toFixed(2); // tilt up / down
+      const ry = (px * 18).toFixed(2);  // tilt left / right
+      inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+  });
+
+  title.addEventListener('mouseleave', () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    inner.style.transition = '';
+    inner.style.transform = '';
+  });
+});
