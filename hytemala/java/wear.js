@@ -22,9 +22,15 @@ const searchButton = document.querySelector("#search-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const daysForecastDiv = document.querySelector(".days-forecast");
 
-// Weather is proxied through the Azure Function /api/weather so the
-// OpenWeatherMap API key stays server-side (see src/functions/weather.js).
-const WEATHER_API = "/api/weather";
+// Weather is fetched straight from OpenWeatherMap using the key below.
+//
+// NOTE: this embeds the API key in the page - anyone who views the page
+// source can read (and abuse) it, so keep an eye on your usage. The secure
+// alternative is the Azure Function proxy (src/functions/weather.js): point
+// WEATHER_API_BASE at your deployed Function App and set WEATHER_API_KEY as
+// an application setting there instead of in this file.
+const WEATHER_API_KEY = "29c47bfa3ebb33f1b39c6242ccc160e";
+const WEATHER_API_BASE = "https://api.openweathermap.org";
 
 const createWeatherCard = (cityName, weatherItem, index) => {
     if (index === 0) {
@@ -56,11 +62,11 @@ const createWeatherCard = (cityName, weatherItem, index) => {
 }
 
 const getWeatherDetails = (cityName, latitude, longitude) => {
-    const WEATHER_API_URL = `${WEATHER_API}?lat=${latitude}&lon=${longitude}`;
+    const WEATHER_API_URL = `${WEATHER_API_BASE}/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`;
 
     fetch(WEATHER_API_URL).then(async response => {
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error || "Weather service error");
+        const data = await response.json().catch(() => null);
+        if (!response.ok) throw new Error((data && data.message) || `Weather service error (HTTP ${response.status})`);
         return data;
     }).then(data => {
         const forecastArray = data.list;
@@ -95,11 +101,11 @@ const getWeatherDetails = (cityName, latitude, longitude) => {
 const getCityCoordinates = () => {
     const cityName = cityInput.value.trim();
     if (cityName === "") return;
-    const API_URL = `${WEATHER_API}?city=${encodeURIComponent(cityName)}`;
+    const API_URL = `${WEATHER_API_BASE}/geo/1.0/direct?q=${encodeURIComponent(cityName)}&limit=1&appid=${WEATHER_API_KEY}`;
   
     fetch(API_URL).then(async response => {
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error || "Weather service error");
+        const data = await response.json().catch(() => null);
+        if (!response.ok) throw new Error((data && data.message) || `Weather service error (HTTP ${response.status})`);
         return data;
     }).then(data => {
         if (!data.length) return alert(`No coordinates found for ${cityName}`);
