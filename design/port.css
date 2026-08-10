@@ -100,3 +100,109 @@ button,
   background: linear-gradient(180deg, var(--primary-color), var(--primary-soft));
   border-radius: 5px;
 }
+
+/* ===== Modern 3D hero type (info.html) =====
+ * The hero heading is split into two stacked lines: the name in white with a
+ * soft extruded depth, and the surname as an animated flowing gradient with a
+ * 3D extrusion, a moving sheen, and a mouse-follow tilt (see port.js). */
+.hero-title {
+  position: relative;
+  display: block;
+  perspective: 900px;
+  animation: hero-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-title-inner {
+  display: block;
+  transform-style: preserve-3d;
+  transition: transform 0.18s ease-out;
+  will-change: transform;
+}
+
+.title-3d-line {
+  display: block;
+  transform: translateZ(34px);
+}
+
+/* First line — crisp white with a soft extruded 3D depth */
+.title-3d-name {
+  color: #ffffff;
+  text-shadow:
+    0 1px 0 rgba(232, 232, 244, 0.9),
+    0 2px 0 rgba(205, 205, 226, 0.85),
+    0 3px 0 rgba(178, 178, 205, 0.8),
+    0 4px 0 rgba(150, 150, 184, 0.75),
+    0 8px 18px rgba(0, 0, 0, 0.55),
+    0 0 34px rgba(0, 245, 212, 0.22);
+}
+
+/* Second line — animated flowing gradient with 3D extrusion + shine sweep */
+.title-3d-gradient {
+  position: relative;
+  background: linear-gradient(100deg, #ff2e63 0%, #7b2cbf 28%, #00f5d4 52%, #7b2cbf 76%, #ff2e63 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hero-gradient-flow 5s linear infinite;
+  filter:
+    drop-shadow(0 2px 0 rgba(123, 44, 191, 0.55))
+    drop-shadow(0 4px 0 rgba(100, 30, 165, 0.45))
+    drop-shadow(0 6px 0 rgba(78, 20, 132, 0.38))
+    drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 38px rgba(255, 46, 99, 0.35));
+}
+
+/* Sheen that sweeps across the gradient text */
+.title-3d-gradient::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.85) 50%, transparent 70%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hero-shine 4s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes hero-gradient-flow {
+  from { background-position: 0% center; }
+  to { background-position: 220% center; }
+}
+
+@keyframes hero-shine {
+  0% { background-position: 200% center; }
+  55%, 100% { background-position: -200% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title,
+  .title-3d-gradient,
+  .title-3d-gradient::after {
+    animation: none;
+  }
+  .hero-title-inner {
+    transition: none;
+  }
+}
+
+/* Graceful fallback if text-clipped backgrounds are unsupported: render the
+ * surname as solid brand purple instead of a broken gradient box. */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .title-3d-gradient {
+    color: #7b2cbf;
+    -webkit-text-fill-color: currentColor;
+  }
+  .title-3d-gradient::after {
+    display: none;
+  }
+}
