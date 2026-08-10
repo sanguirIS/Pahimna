@@ -246,7 +246,18 @@ img { width: 100%; }
     gap: 6px;
     flex: 1 1 auto;
     overflow-y: auto;
+    /* Slim, near-invisible scrollbar instead of the big global one */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
+
+.site-sidebar .sidebar-nav::-webkit-scrollbar { width: 4px; }
+.site-sidebar .sidebar-nav::-webkit-scrollbar-track { background: transparent; }
+.site-sidebar .sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 4px;
+}
+.site-sidebar .sidebar-nav::-webkit-scrollbar-thumb:hover { background: rgba(255, 46, 99, 0.5); }
 
 .site-sidebar .nav-link {
     display: flex;
@@ -782,6 +793,11 @@ body.sheet-open { overflow: hidden; }
 [data-theme="light"] .site-sidebar .nav-link.active i { color: var(--color-brand); }
 
 [data-theme="light"] .sidebar-bottom { border-top-color: rgba(23, 29, 51, 0.12); }
+
+[data-theme="light"] .site-sidebar .sidebar-nav {
+    scrollbar-color: rgba(23, 29, 51, 0.22) transparent;
+}
+[data-theme="light"] .site-sidebar .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(23, 29, 51, 0.22); }
 
 [data-theme="light"] .bottom-nav {
     background: rgba(255, 255, 255, 0.96);
