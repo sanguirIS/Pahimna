@@ -183,9 +183,6 @@ document.addEventListener('DOMContentLoaded', function () {
       } else if (data && data.message) {
         // Surface FormSubmit's own message (e.g. pending account activation)
         showFormStatus('danger', data.message);
-        if (/activat|verif/i.test(data.message)) {
-          showActivationWarning(true);
-        }
       } else {
         showFormStatus('danger', 'Oops! Something went wrong while sending your suggestion. Please try again.');
       }
@@ -193,13 +190,5 @@ document.addEventListener('DOMContentLoaded', function () {
       setLoading(false);
     });
 
-    // Activation notice (shown only when relevant): the warning is surfaced
-    // when a submission reports a pending FormSubmit account activation.
-    const activationWarning = document.getElementById('formActivationWarning');
-
-    function showActivationWarning(show) {
-      if (!activationWarning) return;
-      activationWarning.classList.toggle('d-none', !show);
-    }
   });
 });
