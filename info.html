@@ -50,9 +50,53 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         opacity: 1;
         transform: translateY(0);
       }
+
+      /* ===== Falling code rain (info.html only; other pages keep petals) ===== */
+      .code-rain {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      main {
+        position: relative;
+        z-index: 1;
+      }
+      .code-rain .cr-char {
+        position: absolute;
+        top: -2em;
+        font-family: "Courier New", monospace;
+        font-weight: 700;
+        text-shadow: 0 0 8px currentColor;
+        opacity: 0;
+        animation: cr-fall linear forwards;
+      }
+      @keyframes cr-fall {
+        0% {
+          transform: translateY(-4vh);
+          opacity: 0;
+        }
+        8% {
+          opacity: 0.9;
+        }
+        85% {
+          opacity: 0.75;
+        }
+        100% {
+          transform: translateY(108vh);
+          opacity: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .code-rain {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body class="selection:bg-blue-600 selection:text-white bg-slate-900 text-slate-300">
+    <div id="code-rain" class="code-rain" aria-hidden="true"></div>
     <div id="progress-bar" class="progress-bar"></div>
 
     <nav class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md shadow-xl border-b border-blue-900/50 transition-all duration-300">
@@ -557,6 +601,53 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
           });
         }
       });
+    </script>
+
+    <!-- Falling code rain (info.html only) -->
+    <script>
+      (function () {
+        var container = document.getElementById("code-rain");
+        if (!container) return;
+        var reduced =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduced) return;
+
+        var chars = [
+          "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+          "{", "}", "[", "]", "(", ")", "<", ">", "/", ";",
+          ":", "=", "+", "-", "*", "_", "."
+        ];
+        var colors = ["#3b82f6", "#60a5fa", "#38bdf8", "#818cf8", "#93c5fd"];
+        var maxActive = 35;
+        var active = 0;
+        var paused = false;
+
+        document.addEventListener("visibilitychange", function () {
+          paused = document.hidden;
+        });
+
+        function spawn() {
+          if (paused || active >= maxActive) return;
+          var el = document.createElement("span");
+          el.className = "cr-char";
+          el.textContent = chars[Math.floor(Math.random() * chars.length)];
+          el.style.left = Math.random() * 100 + "vw";
+          el.style.fontSize = 14 + Math.random() * 22 + "px";
+          el.style.color = colors[Math.floor(Math.random() * colors.length)];
+          el.style.animationDuration = 6 + Math.random() * 8 + "s";
+          el.style.animationDelay = Math.random() * 2 + "s";
+          container.appendChild(el);
+          active++;
+          el.addEventListener("animationend", function () {
+            el.remove();
+            active--;
+          });
+        }
+
+        setInterval(spawn, 140);
+        for (var i = 0; i < 8; i++) spawn();
+      })();
     </script>
 
     <!-- Scroll progress bar (port.js) + shared security script -->
