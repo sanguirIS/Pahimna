@@ -38,6 +38,64 @@ window.addEventListener("resize", updateProgressBar);
 
 document.addEventListener("DOMContentLoaded", updateProgressBar);
 
+// Responsive layout handler - fixes the issue where desktop/mobile views don't update
+// when window is resized or when "desktop site" is toggled on mobile
+function updateResponsiveLayout() {
+  const siteSidebar = document.getElementById('siteSidebar');
+  const bottomNav = document.getElementById('bottomNav');
+  const moreSheet = document.getElementById('moreSheet');
+  const moreOverlay = document.getElementById('moreOverlay');
+  
+  // Check if viewport is desktop size (>= 992px)
+  const isDesktop = window.innerWidth >= 992;
+  
+  if (siteSidebar) {
+    siteSidebar.style.display = isDesktop ? 'flex' : 'none';
+  }
+  
+  if (bottomNav) {
+    bottomNav.style.display = isDesktop ? 'none' : 'flex';
+  }
+  
+  if (moreSheet) {
+    moreSheet.style.display = isDesktop ? 'none' : '';
+  }
+  
+  if (moreOverlay) {
+    moreOverlay.style.display = isDesktop ? 'none' : '';
+  }
+  
+  // If we're on mobile and the bottom nav exists, reposition the indicator
+  if (!isDesktop && bottomNav) {
+    const indicator = document.getElementById('navIndicator');
+    if (indicator) {
+      const active = bottomNav.querySelector('.nav-link.active');
+      if (active) {
+        indicator.style.width = active.offsetWidth + 'px';
+        indicator.style.transform = 'translateX(' + active.offsetLeft + 'px)';
+        indicator.style.opacity = '1';
+      }
+    }
+  }
+}
+
+// Run on load
+window.addEventListener('load', updateResponsiveLayout);
+
+// Run on window resize - this fixes the maximize/restore issue on desktop
+window.addEventListener('resize', updateResponsiveLayout);
+
+// Also run on orientation change for mobile devices
+window.addEventListener('orientationchange', updateResponsiveLayout);
+
+// Create a ResizeObserver to detect any viewport size changes (including when "desktop site" is toggled)
+if ('ResizeObserver' in window) {
+  const resizeObserver = new ResizeObserver(entries => {
+    updateResponsiveLayout();
+  });
+  resizeObserver.observe(document.documentElement);
+}
+
 // Modern 3D tilt for the hero title (info.html): the two stacked lines rotate
 // in 3D space following the mouse, then settle back flat on mouse leave.
 document.addEventListener("DOMContentLoaded", function () {
@@ -75,4 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
     inner.style.transition = "";
     inner.style.transform = "";
   });
+  
+  // Initialize responsive layout when DOM is ready
+  updateResponsiveLayout();
 });

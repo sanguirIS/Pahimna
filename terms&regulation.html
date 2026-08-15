@@ -205,5 +205,63 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </div>
     </div>
     <script src="JavaScript/security.js"></script>
+    <script>
+      // Responsive layout handler - fixes viewport issues on mobile/tablet
+      function updateResponsiveLayout() {
+        // Ensure proper viewport handling for all screen sizes
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+          // Maintain proper scaling on all devices
+          viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+        }
+        
+        // Fix terms box width for small screens
+        const termsBox = document.querySelector('.terms-box');
+        if (termsBox) {
+          if (window.innerWidth < 576) { // Mobile size
+            termsBox.style.width = '95%';
+            termsBox.style.margin = '10px auto';
+            termsBox.style.padding = '15px';
+            termsBox.style.maxHeight = '90vh';
+          } else if (window.innerWidth < 768) { // Tablet size
+            termsBox.style.width = '90%';
+            termsBox.style.margin = '20px auto';
+            termsBox.style.padding = '25px';
+          } else { // Desktop size
+            termsBox.style.width = '';
+            termsBox.style.margin = '';
+            termsBox.style.padding = '';
+            termsBox.style.maxHeight = '';
+          }
+        }
+        
+        // Fix button layout on small screens
+        const buttons = document.querySelector('.buttons');
+        if (buttons) {
+          if (window.innerWidth < 576) {
+            buttons.style.flexDirection = 'column';
+            buttons.style.gap = '10px';
+          } else {
+            buttons.style.flexDirection = '';
+            buttons.style.gap = '';
+          }
+        }
+      }
+
+      // Run on load
+      window.addEventListener('load', updateResponsiveLayout);
+      // Run on window resize
+      window.addEventListener('resize', updateResponsiveLayout);
+      // Run on orientation change for mobile
+      window.addEventListener('orientationchange', updateResponsiveLayout);
+      
+      // ResizeObserver to detect viewport changes
+      if ('ResizeObserver' in window) {
+        const resizeObserver = new ResizeObserver(entries => {
+          updateResponsiveLayout();
+        });
+        resizeObserver.observe(document.documentElement);
+      }
+    </script>
   </body>
 </html>

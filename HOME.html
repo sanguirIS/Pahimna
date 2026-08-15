@@ -50,5 +50,49 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     <script src="JavaScript/codis.js"></script>
     <script src="JavaScript/security.js"></script>
+    <script>
+      // Responsive layout handler - fixes viewport issues on mobile/tablet
+      function updateResponsiveLayout() {
+        // Ensure proper viewport handling for all screen sizes
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+          // Maintain proper scaling on all devices
+          viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+        }
+        
+        // Fix container width for small screens
+        const container = document.querySelector('.container');
+        if (container) {
+          if (window.innerWidth < 576) { // Mobile size
+            container.style.width = '95%';
+            container.style.margin = '20px auto';
+            container.style.padding = '20px';
+          } else if (window.innerWidth < 768) { // Tablet size
+            container.style.width = '85%';
+            container.style.margin = '30px auto';
+            container.style.padding = '30px';
+          } else { // Desktop size
+            container.style.width = '';
+            container.style.margin = '';
+            container.style.padding = '';
+          }
+        }
+      }
+
+      // Run on load
+      window.addEventListener('load', updateResponsiveLayout);
+      // Run on window resize
+      window.addEventListener('resize', updateResponsiveLayout);
+      // Run on orientation change for mobile
+      window.addEventListener('orientationchange', updateResponsiveLayout);
+      
+      // ResizeObserver to detect viewport changes
+      if ('ResizeObserver' in window) {
+        const resizeObserver = new ResizeObserver(entries => {
+          updateResponsiveLayout();
+        });
+        resizeObserver.observe(document.documentElement);
+      }
+    </script>
   </body>
 </html>
