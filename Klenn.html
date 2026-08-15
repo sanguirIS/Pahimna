@@ -44,6 +44,161 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <link rel="stylesheet" href="design/bootstrap.min.css">
     <link rel="stylesheet" href="design/line-awesome.min.css">
     <link rel="stylesheet" href="design/Ohjie.css">
+
+    <style>
+        /* ===== Multimodal AI Showcase ===== */
+        :root {
+            --mm-text: #ffffff;
+            --mm-muted: rgba(255, 255, 255, 0.62);
+            --mm-panel-bg: rgba(15, 5, 36, 0.55);
+            --mm-border: rgba(255, 255, 255, 0.08);
+        }
+        [data-theme="light"] {
+            --mm-text: #171d33;
+            --mm-muted: rgba(23, 29, 51, 0.6);
+            --mm-panel-bg: rgba(23, 29, 51, 0.05);
+            --mm-border: rgba(23, 29, 51, 0.12);
+        }
+        .mm-panel-wrap {
+            animation: mm-fade 0.45s ease;
+        }
+        @keyframes mm-fade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: none; }
+        }
+        .mm-tab {
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--mm-border);
+            background: transparent;
+            color: var(--mm-text);
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .mm-tab:hover {
+            border-color: var(--color-brand);
+            color: var(--color-brand);
+        }
+        .mm-tab.mm-tab-active,
+        .mm-tab.mm-tab-active:hover {
+            background: linear-gradient(135deg, var(--color-brand), var(--color-accent1));
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 46, 99, 0.4);
+        }
+        .mm-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--mm-muted);
+        }
+        .mm-text { color: var(--mm-text); }
+        .mm-muted { color: var(--mm-muted); }
+        .mm-brand-text { color: var(--color-brand); font-weight: 600; }
+        .mm-online { color: var(--color-brand2); font-size: 0.8rem; font-weight: 600; }
+        .mm-panel {
+            background: var(--mm-panel-bg);
+            border: 1px solid var(--mm-border);
+        }
+        .mm-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .mm-btn-ghost {
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--mm-border);
+            background: transparent;
+            color: var(--mm-text);
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .mm-btn-ghost:hover {
+            border-color: var(--color-brand);
+            color: var(--color-brand);
+            transform: translateY(-2px);
+        }
+        .mm-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.1em;
+            background: var(--color-brand);
+            vertical-align: text-bottom;
+            animation: mm-blink 0.9s steps(2, start) infinite;
+        }
+        @keyframes mm-blink { to { visibility: hidden; } }
+        .mm-eq {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 64px;
+        }
+        .mm-eq-bar {
+            width: 10px;
+            height: 15%;
+            border-radius: 3px;
+            background: linear-gradient(180deg, var(--color-brand2), var(--color-brand));
+        }
+        .mm-eq.speaking .mm-eq-bar { animation: mm-eq-bounce 1s ease-in-out infinite; }
+        .mm-eq .mm-eq-bar:nth-child(2) { animation-delay: 0.12s; }
+        .mm-eq .mm-eq-bar:nth-child(3) { animation-delay: 0.24s; }
+        .mm-eq .mm-eq-bar:nth-child(4) { animation-delay: 0.36s; }
+        .mm-eq .mm-eq-bar:nth-child(5) { animation-delay: 0.48s; }
+        @keyframes mm-eq-bounce {
+            0%, 100% { height: 15%; }
+            50% { height: 100%; }
+        }
+        .mm-seek { accent-color: var(--color-brand); }
+        .mm-gallery-item { cursor: zoom-in; }
+        .mm-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .mm-lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .mm-lightbox-close:hover {
+            background: var(--color-brand);
+            transform: rotate(90deg);
+        }
+        .mm-lightbox-figure { max-width: 900px; width: 100%; margin: 0; }
+        .mm-lightbox-img {
+            width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .mm-lightbox-caption {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 1rem;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .mm-panel-wrap { animation: none; }
+            .mm-eq.speaking .mm-eq-bar { animation: none; }
+            .mm-cursor { animation: none; }
+        }
+    </style>
     <!-- Prevent page from being cached -->
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
@@ -72,6 +227,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <li><a class="nav-link" href="#bsiscousin"><i class="la la-images"></i><span>Memories</span></a></li>
             <li><a class="nav-link" href="#cord"><i class="la la-code"></i><span>Projects</span></a></li>
             <li><a class="nav-link" href="#edit"><i class="la la-film"></i><span>Editing</span></a></li>
+            <li><a class="nav-link" href="#multimodal"><i class="la la-cubes"></i><span>Multimodal</span></a></li>
             <li><a class="nav-link" href="#suggestion"><i class="la la-comment-dots"></i><span>Suggestion</span></a></li>
             <li class="more-item">
                 <button class="nav-link more-toggle collapsed" type="button" data-bs-toggle="collapse"
@@ -116,6 +272,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="more-sheet" id="moreSheet" role="dialog" aria-label="More options">
         <div class="more-sheet-handle"></div>
         <a class="nav-link" href="#edit"><i class="la la-film"></i><span>Editing</span></a>
+        <a class="nav-link" href="#multimodal"><i class="la la-cubes"></i><span>Multimodal</span></a>
         <a class="nav-link" href="#suggestion"><i class="la la-comment-dots"></i><span>Suggestion</span></a>
         <hr>
         <a class="nav-link" href="info.html"><i class="la la-star"></i><span>Shortcuts</span></a>
@@ -573,6 +730,177 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </div>
         </section>
 
+        <!-- ===== Multimodal AI Showcase ===== -->
+        <section id="multimodal" class="full-height px-lg-5">
+            <div class="container">
+
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-lg-8">
+                        <h6 class="text-brand">Multimodal AI</h6>
+                        <h1>Multimodal AI Showcase</h1>
+                        <p class="mm-muted mb-0">One idea, many modalities — experience the same content as text, image, audio, and video.</p>
+                    </div>
+                </div>
+
+                <div class="row pb-4" data-aos="fade-up">
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap gap-2" role="tablist" aria-label="Content modality">
+                            <button type="button" role="tab" data-mm-mode="text" aria-selected="true" class="mm-tab mm-tab-active">💬 Text</button>
+                            <button type="button" role="tab" data-mm-mode="image" aria-selected="false" class="mm-tab">🖼️ Image</button>
+                            <button type="button" role="tab" data-mm-mode="audio" aria-selected="false" class="mm-tab">🔊 Audio</button>
+                            <button type="button" role="tab" data-mm-mode="video" aria-selected="false" class="mm-tab">🎬 Video</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TEXT modality -->
+                <div id="mm-panel-text" class="mm-panel-wrap" role="tabpanel">
+                    <div class="row gy-4">
+                        <div class="col-lg-6" data-aos="fade-up">
+                            <div class="card-custom rounded-4 bg-base shadow-effect h-100 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="d-flex gap-2">
+                                        <span class="mm-dot" style="background:#ff5f57;"></span>
+                                        <span class="mm-dot" style="background:#febc2e;"></span>
+                                        <span class="mm-dot" style="background:#28c840;"></span>
+                                    </span>
+                                    <span class="mm-label">Prompt</span>
+                                </div>
+                                <div class="mm-panel rounded-3 p-3 flex-grow-1">
+                                    <p id="mm-prompt" class="mm-text mb-0 fst-italic"></p>
+                                </div>
+                                <p class="mm-muted small mt-3 mb-0">Ask an AI about Klenn, then switch modalities to experience the same answer as an image or audio.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                            <div class="card-custom rounded-4 bg-base shadow-effect h-100 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="mm-label">AI Response</span>
+                                    <span class="mm-online"><i class="la la-circle"></i> online</span>
+                                </div>
+                                <div class="mm-panel rounded-3 p-3 flex-grow-1" style="min-height:7rem;">
+                                    <p id="mm-response" class="mm-text mb-0"></p>
+                                    <span id="mm-cursor" class="mm-cursor"></span>
+                                </div>
+                                <div class="d-flex flex-wrap gap-2 mt-3">
+                                    <button id="mm-next" type="button" class="btn btn-brand btn-sm">↻ New response</button>
+                                    <button id="mm-listen" type="button" class="mm-btn-ghost">🔊 Listen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMAGE modality -->
+                <div id="mm-panel-image" class="mm-panel-wrap d-none" role="tabpanel">
+                    <p class="mm-muted mb-4">AI-generated portraits used across the site — <span class="mm-brand-text">click any image</span> to view it full size.</p>
+                    <div class="row gy-4">
+                        <div class="col-md-4">
+                            <figure class="card-custom rounded-4 bg-base shadow-effect mb-0 mm-gallery-item">
+                                <div class="card-custom-image rounded-4">
+                                    <img class="rounded-4 w-100" style="height:220px;object-fit:cover;" src="PicVid/Gemini_Generated_Image_pnfnaipnfnaipnfn.png" loading="lazy" alt="AI-generated portrait of Klenn Pahimna — main avatar">
+                                </div>
+                                <figcaption class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="mm-text fw-semibold">AI Portrait</span>
+                                    <span class="text-brand small">Gemini ✦</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-md-4">
+                            <figure class="card-custom rounded-4 bg-base shadow-effect mb-0 mm-gallery-item">
+                                <div class="card-custom-image rounded-4">
+                                    <img class="rounded-4 w-100" style="height:220px;object-fit:cover;" src="PicVid/Gemini_Generated_Image_jx6bjx6bjx6bjx6b.png" loading="lazy" alt="AI-generated portrait of Klenn Pahimna — alternate avatar">
+                                </div>
+                                <figcaption class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="mm-text fw-semibold">AI Portrait II</span>
+                                    <span class="text-brand small">Gemini ✦</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-md-4">
+                            <figure class="card-custom rounded-4 bg-base shadow-effect mb-0 mm-gallery-item">
+                                <div class="card-custom-image rounded-4">
+                                    <img class="rounded-4 w-100" style="height:220px;object-fit:cover;" src="PicVid/Gemini_Generated_Image_b53nrgb53nrgb53n-removebg-preview.png" loading="lazy" alt="AI-generated avatar badge of Klenn Pahimna">
+                                </div>
+                                <figcaption class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="mm-text fw-semibold">AI Avatar Badge</span>
+                                    <span class="text-brand small">Gemini ✦</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO modality -->
+                <div id="mm-panel-video" class="mm-panel-wrap d-none" role="tabpanel">
+                    <p class="mm-muted mb-4">A taste of Klenn's family, cousins, and school clips.</p>
+                    <div class="row gy-4">
+                        <div class="col-md-4">
+                            <figure class="card-custom rounded-4 bg-base shadow-effect mb-0">
+                                <video src="PicVid/Family.mp4" class="video-fluid" controls controlsList="nodownload" preload="metadata"></video>
+                                <figcaption class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="mm-text fw-semibold">Family</span>
+                                    <span class="text-brand small">Memories</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-md-4">
+                            <figure class="card-custom rounded-4 bg-base shadow-effect mb-0">
+                                <video src="PicVid/To See All My Cousin.mp4" class="video-fluid" controls controlsList="nodownload" preload="metadata"></video>
+                                <figcaption class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="mm-text fw-semibold">To See All My Cousin</span>
+                                    <span class="text-brand small">Memories</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-md-4">
+                            <figure class="card-custom rounded-4 bg-base shadow-effect mb-0">
+                                <video src="PicVid/[YT2mp3.info] - BSIS 101A.mp4" class="video-fluid" controls controlsList="nodownload" preload="metadata"></video>
+                                <figcaption class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="mm-text fw-semibold">BSIS 101A</span>
+                                    <span class="text-brand small">School</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AUDIO modality -->
+                <div id="mm-panel-audio" class="mm-panel-wrap d-none" role="tabpanel">
+                    <div class="card-custom rounded-4 bg-base shadow-effect">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <span class="mm-label">Audio Player</span>
+                            <span class="mm-brand-text small">multimodal-demo.wav</span>
+                        </div>
+                        <div class="row gy-4 align-items-center">
+                            <div class="col-auto">
+                                <div id="mm-eq" class="mm-eq" aria-hidden="true">
+                                    <span class="mm-eq-bar"></span>
+                                    <span class="mm-eq-bar"></span>
+                                    <span class="mm-eq-bar"></span>
+                                    <span class="mm-eq-bar"></span>
+                                    <span class="mm-eq-bar"></span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <audio id="mm-audio" src="PicVid/multimodal-demo.wav" preload="metadata"></audio>
+                                <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                                    <button id="mm-play" type="button" class="btn btn-brand btn-sm">▶ Play</button>
+                                    <button id="mm-stop" type="button" class="mm-btn-ghost">⏹ Stop</button>
+                                    <span id="mm-time" class="mm-muted small font-monospace">0:00 / 0:00</span>
+                                </div>
+                                <input id="mm-seek" type="range" class="form-range mm-seek mb-3" min="0" max="1000" value="0" aria-label="Seek through audio">
+                                <div class="mm-panel rounded-3 p-3">
+                                    <p id="mm-audio-transcript" class="mm-muted small fst-italic mb-2"></p>
+                                    <p class="mm-muted small mb-0">Status: <span id="mm-speaking" class="mm-brand-text">stopped</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="suggestion" class="full-height px-lg-5">
             <div class="container">
 
@@ -658,6 +986,241 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     <button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="la la-angle-up"></i></button>
 
+    <!-- Multimodal AI Showcase image viewer -->
+    <div id="mm-lightbox" class="mm-lightbox d-none" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button id="mm-lightbox-close" type="button" class="mm-lightbox-close" aria-label="Close image viewer">✕</button>
+        <figure class="mm-lightbox-figure">
+            <img id="mm-lightbox-img" src="" alt="" class="mm-lightbox-img">
+            <figcaption id="mm-lightbox-caption" class="mm-lightbox-caption"></figcaption>
+        </figure>
+    </div>
+
+    <script>
+        // ===== Multimodal AI Showcase (text / image / audio) =====
+        (function () {
+            'use strict';
+
+            var entries = [
+                {
+                    prompt: 'Describe Klenn Pahimna in one paragraph.',
+                    response:
+                        'Klenn Ohjie S. Pahimna is an aspiring Information Systems specialist from Balbalungao, Lupao, N.E. He focuses on web development, database administration, and technical support, and he is driven by continuous learning and a strong awareness of digital security.'
+                },
+                {
+                    prompt: "What are Klenn's core skills?",
+                    response:
+                        "Web development with a designer's eye for UI and UX using tools like Figma and Canva; database administration with a self-assessed proficiency of 40 to 85 percent; and technical support, diagnosing hardware and network issues from the operating system level up."
+                },
+                {
+                    prompt: "Summarize Klenn's certifications.",
+                    response:
+                        'Top certifications include Data Analytics Essentials, Cyber Threat Management, and Digital Safety and Security Awareness. He earned a cluster-level Think Quest award and scored 88 out of 100 on the Cyber Threat Management Knowledge Check.'
+                }
+            ];
+
+            var index = 0;
+            var typeTimer = null;
+            var prefersReduced =
+                window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            var promptEl = document.getElementById('mm-prompt');
+            var responseEl = document.getElementById('mm-response');
+            var cursorEl = document.getElementById('mm-cursor');
+            var nextBtn = document.getElementById('mm-next');
+            var listenBtn = document.getElementById('mm-listen');
+            var tabs = document.querySelectorAll('.mm-tab');
+            var audioEl = document.getElementById('mm-audio');
+            var playBtn = document.getElementById('mm-play');
+            var stopBtn = document.getElementById('mm-stop');
+            var seekEl = document.getElementById('mm-seek');
+            var timeEl = document.getElementById('mm-time');
+            var eq = document.getElementById('mm-eq');
+            var speakingEl = document.getElementById('mm-speaking');
+            var transcriptEl = document.getElementById('mm-audio-transcript');
+            var lightbox = document.getElementById('mm-lightbox');
+            var lightboxImg = document.getElementById('mm-lightbox-img');
+            var lightboxCaption = document.getElementById('mm-lightbox-caption');
+
+            if (!responseEl || !promptEl || !tabs.length) return;
+
+            function currentEntry() {
+                return entries[index];
+            }
+
+            function typeResponse(text) {
+                clearInterval(typeTimer);
+                if (cursorEl) cursorEl.style.display = 'inline-block';
+                if (prefersReduced) {
+                    responseEl.textContent = text;
+                    if (cursorEl) cursorEl.style.display = 'none';
+                    return;
+                }
+                responseEl.textContent = '';
+                var i = 0;
+                typeTimer = setInterval(function () {
+                    i += 1;
+                    responseEl.textContent = text.slice(0, i);
+                    if (i >= text.length) {
+                        clearInterval(typeTimer);
+                        if (cursorEl) cursorEl.style.display = 'none';
+                    }
+                }, 12);
+            }
+
+            function renderEntry() {
+                promptEl.textContent = currentEntry().prompt;
+                if (transcriptEl) transcriptEl.textContent = currentEntry().response;
+            }
+
+            function ensureTyped() {
+                if (responseEl.dataset.typed === 'true') return;
+                responseEl.dataset.typed = 'true';
+                renderEntry();
+                typeResponse(currentEntry().response);
+            }
+
+            function switchTab(mode) {
+                tabs.forEach(function (tab) {
+                    var active = tab.getAttribute('data-mm-mode') === mode;
+                    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                    tab.classList.toggle('mm-tab-active', active);
+                });
+                document.getElementById('mm-panel-text').classList.toggle('d-none', mode !== 'text');
+                document.getElementById('mm-panel-image').classList.toggle('d-none', mode !== 'image');
+                document.getElementById('mm-panel-video').classList.toggle('d-none', mode !== 'video');
+                document.getElementById('mm-panel-audio').classList.toggle('d-none', mode !== 'audio');
+                if (mode === 'text') ensureTyped();
+            }
+
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    switchTab(tab.getAttribute('data-mm-mode'));
+                });
+            });
+
+            nextBtn.addEventListener('click', function () {
+                index = (index + 1) % entries.length;
+                renderEntry();
+                typeResponse(currentEntry().response);
+            });
+
+            listenBtn.addEventListener('click', function () {
+                switchTab('audio');
+                if (audioEl) audioEl.play();
+            });
+
+            // ---------- Audio player ----------
+            function formatTime(sec) {
+                if (!isFinite(sec) || sec < 0) sec = 0;
+                var m = Math.floor(sec / 60);
+                var s = Math.floor(sec % 60);
+                return m + ':' + (s < 10 ? '0' : '') + s;
+            }
+
+            function setAudioState(state) {
+                if (speakingEl) speakingEl.textContent = state;
+                if (eq) eq.classList.toggle('speaking', state === 'playing');
+                if (playBtn) {
+                    playBtn.textContent = state === 'playing' ? '⏸ Pause' : '▶ Play';
+                }
+            }
+
+            if (audioEl && playBtn) {
+                playBtn.addEventListener('click', function () {
+                    if (audioEl.paused) {
+                        audioEl.play();
+                    } else {
+                        audioEl.pause();
+                    }
+                });
+
+                if (stopBtn) {
+                    stopBtn.addEventListener('click', function () {
+                        audioEl.pause();
+                        audioEl.currentTime = 0;
+                        setAudioState('stopped');
+                        if (seekEl) seekEl.value = 0;
+                    });
+                }
+
+                audioEl.addEventListener('play', function () {
+                    setAudioState('playing');
+                });
+                audioEl.addEventListener('pause', function () {
+                    setAudioState(audioEl.ended ? 'ended' : 'paused');
+                });
+                audioEl.addEventListener('ended', function () {
+                    setAudioState('ended');
+                });
+                audioEl.addEventListener('error', function () {
+                    setAudioState('error loading audio');
+                });
+
+                audioEl.addEventListener('timeupdate', function () {
+                    if (seekEl && audioEl.duration) {
+                        seekEl.value = Math.round((audioEl.currentTime / audioEl.duration) * 1000);
+                    }
+                    if (timeEl) {
+                        timeEl.textContent =
+                            formatTime(audioEl.currentTime) + ' / ' + formatTime(audioEl.duration);
+                    }
+                });
+
+                if (seekEl) {
+                    seekEl.addEventListener('input', function () {
+                        if (audioEl.duration) {
+                            audioEl.currentTime = (seekEl.value / 1000) * audioEl.duration;
+                        }
+                    });
+                }
+            }
+
+            // ---------- Lightbox ----------
+            if (lightbox && lightboxImg && lightboxCaption) {
+                document.querySelectorAll('.mm-gallery-item').forEach(function (item) {
+                    item.addEventListener('click', function () {
+                        var img = item.querySelector('img');
+                        if (!img) return;
+                        lightboxImg.src = img.src;
+                        lightboxImg.alt = img.alt;
+                        lightboxCaption.textContent = img.alt;
+                        lightbox.classList.remove('d-none');
+                        document.body.classList.add('sheet-open');
+                    });
+                });
+
+                function closeLightbox() {
+                    lightbox.classList.add('d-none');
+                    document.body.classList.remove('sheet-open');
+                }
+
+                document.getElementById('mm-lightbox-close').addEventListener('click', closeLightbox);
+                lightbox.addEventListener('click', function (e) {
+                    if (e.target === lightbox) closeLightbox();
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') closeLightbox();
+                });
+            }
+
+            // Type the response only once the section scrolls into view
+            var section = document.getElementById('multimodal');
+            if (section && 'IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            ensureTyped();
+                            observer.disconnect();
+                        }
+                    });
+                }, { threshold: 0.1 });
+                observer.observe(section);
+            } else {
+                ensureTyped();
+            }
+        })();
+    </script>
+
     <script src="JavaScript/aos.js"></script>
     <script src="JavaScript/bootstrap.bundle.min.js"></script>
     <script src="JavaScript/babagi.js"></script>
@@ -682,7 +1245,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
         // Scroll-spy: highlight the section link in the sidebar & bottom nav
         document.addEventListener('DOMContentLoaded', function () {
-            var sections = ['home', 'vlog', 'bsiscousin', 'cord', 'edit', 'suggestion'];
+            var sections = ['home', 'vlog', 'bsiscousin', 'cord', 'edit', 'multimodal', 'suggestion'];
             var links = document.querySelectorAll(
                 '.site-sidebar .nav-link, .bottom-nav .nav-link, .more-sheet .nav-link'
             );
