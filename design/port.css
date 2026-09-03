@@ -204,6 +204,7 @@ img { max-width: 100%; height: auto; }
   color: transparent;
   -webkit-text-fill-color: transparent;
   animation: hero-gradient-flow 5s linear infinite;
+  will-change: background-position;
   filter:
     drop-shadow(0 2px 0 rgba(59, 130, 246, 0.55))
     drop-shadow(0 4px 0 rgba(49, 108, 216, 0.45))

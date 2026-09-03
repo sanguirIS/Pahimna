@@ -350,6 +350,7 @@ img { width: 100%; }
     pointer-events: none;
     z-index: 0;
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), width 0.3s ease, opacity 0.25s ease;
+    will-change: transform;
 }
 
 .bottom-nav .nav-link {
@@ -411,6 +412,7 @@ img { width: 100%; }
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
     transform: translateY(105%);
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
 }
 
 .more-sheet.open { transform: translateY(0); }
@@ -1064,6 +1066,7 @@ img, video, iframe, .card-custom-image img, .card-custom-image video {
     color: transparent;
     -webkit-text-fill-color: transparent;
     animation: hero-gradient-flow 5s linear infinite;
+    will-change: background-position;
     filter:
         drop-shadow(0 2px 0 rgba(59, 130, 246, 0.55))
         drop-shadow(0 4px 0 rgba(49, 108, 216, 0.45))
