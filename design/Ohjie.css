@@ -537,6 +537,7 @@ body.sheet-open { overflow: hidden; }
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     transition: var(--transition);
+    will-change: transform;
     margin-bottom: 24px;
     position: relative;
     overflow: hidden;
@@ -582,6 +583,7 @@ body.sheet-open { overflow: hidden; }
 .card-custom .card-custom-image img,
 .card-custom .card-custom-image video {
     transition: transform 0.4s ease;
+    will-change: transform;
     display: block;
 }
 
