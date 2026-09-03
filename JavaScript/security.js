@@ -19,7 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Security measures: prevent right-click and inspection shortcuts,
- * detect DevTools politely (warning overlay), and hide raw phone numbers.
+ * and hide raw phone numbers.
  */
 (function () {
     // Disable right-click context menu
@@ -44,52 +44,96 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         }
     });
 
-    // Show a warning overlay when DevTools is detected (instead of destroying the page)
-    let warningShown = false;
-    function showWarning() {
-        if (warningShown) return;
-        warningShown = true;
-        const overlay = document.createElement('div');
-        overlay.id = 'devtools-warning';
-        overlay.style.cssText =
-            'position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;' +
-            'background:rgba(10,5,30,0.92);backdrop-filter:blur(6px);color:#fff;font-family:sans-serif;text-align:center;padding:20px;';
-        overlay.innerHTML =
-            '<div><h2 style="margin:0 0 12px;color:#ff2e63;">⚠ Security Alert</h2>' +
-            '<p style="margin:0;font-size:15px;">Developer tools access is restricted on this website.<br>Please close DevTools to continue.</p></div>';
-        document.body.appendChild(overlay);
-    }
-
-    // Lightweight DevTools detection via window size delta
-    let lastWidth = window.innerWidth;
-    let lastHeight = window.innerHeight;
-
-    function detectDevTools() {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        const threshold = 160;
-        if (Math.abs(w - lastWidth) > threshold || Math.abs(h - lastHeight) > threshold) {
-            showWarning();
+    // ===== DevTools protection (desktop only) =====
+    // Mobile/tablet users (including Desktop site mode) keep full access.
+    // This is a deterrent, not real security — it can be bypassed.
+    (function () {
+        function isMobileOrTablet() {
+            var ua = navigator.userAgent || '';
+            if (/Mobi|Android|iPhone|iPad|iPod|Silk|Kindle|Opera Mini|IEMobile/i.test(ua)) return true;
+            // Touch support without desktop-class screen width
+            if ('ontouchstart' in window && screen.width < 1024) return true;
+            return false;
         }
-        lastWidth = w;
-        lastHeight = h;
-    }
 
-    // Also detect via console timing (non-destructive, generous threshold to avoid false positives)
-    function detectViaConsole() {
-        const before = performance.now();
-        console.log('%c', 'padding: 1px; margin: 0; line-height: 0; display: block;');
-        const after = performance.now();
-        if (after - before > 200) {
-            setTimeout(showWarning, 500);
+        if (isMobileOrTablet()) return; // skip protection on phones/tablets
+
+        // --- 1. Console debugger trap ---
+        // Force a debugger breakpoint if someone opens the console.
+        var _devtools = { open: false };
+        Object.defineProperty(_devtools, 'open', {
+            get: function () {
+                // When DevTools reads this, trigger debugger
+                debugger;
+                return false;
+            }
+        });
+
+        // --- 2. Window resize detection ---
+        // Opening DevTools usually resizes the viewport by ~200-400px.
+        var lastWidth = window.innerWidth;
+        var lastHeight = window.innerHeight;
+        var resizeTimer = null;
+        var _resizeDetected = false;
+
+        window.addEventListener('resize', function () {
+            if (_resizeDetected) return;
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                var wDiff = Math.abs(window.innerWidth - lastWidth);
+                var hDiff = Math.abs(window.innerHeight - lastHeight);
+                // DevTools panel typically causes a >150px shift on one axis
+                if (wDiff > 150 || hDiff > 150) {
+                    _resizeDetected = true;
+                    _showDevToolsWarning();
+                }
+                lastWidth = window.innerWidth;
+                lastHeight = window.innerHeight;
+            }, 300);
+        });
+
+        // --- 3. Performance timing detection ---
+        // debugger statement causes a >100ms pause in the call stack.
+        setInterval(function () {
+            var start = performance.now();
+            debugger;
+            var elapsed = performance.now() - start;
+            if (elapsed > 200) {
+                _showDevToolsWarning();
+            }
+        }, 3000);
+
+        function _showDevToolsWarning() {
+            if (document.getElementById('devtools-block-overlay')) return;
+            var overlay = document.createElement('div');
+            overlay.id = 'devtools-block-overlay';
+            overlay.style.cssText = '
+                position: fixed; inset: 0; z-index: 999999;
+                background: rgba(0,0,0,0.92); color: #fff;
+                display: flex; flex-direction: column;
+                align-items: center; justify-content: center;
+                font-family: Inter, sans-serif; text-align: center;
+                padding: 40px;
+            ';
+            overlay.innerHTML = '
+                <div style="font-size: 48px; margin-bottom: 16px;">🚫</div>
+                <h2 style="margin: 0 0 12px; font-size: 24px;">Developer Tools Detected</h2>
+                <p style="margin: 0; font-size: 14px; opacity: 0.7; max-width: 400px;">
+                    Inspection of this page is restricted on desktop devices.
+                    Please close Developer Tools to continue.
+                </p>
+            ';
+            document.body.appendChild(overlay);
+            // Auto-remove when DevTools closes (resize back to normal)
+            window.addEventListener('resize', function _onResize() {
+                if (Math.abs(window.innerWidth - lastWidth) < 10) {
+                    overlay.remove();
+                    _resizeDetected = false;
+                    window.removeEventListener('resize', _onResize);
+                }
+            });
         }
-    }
-
-    // Skip the immediate check (page load is naturally slow); only poll later
-    setTimeout(function () {
-        setInterval(detectViaConsole, 5000);
-        window.addEventListener('resize', detectDevTools);
-    }, 3000);
+    })();
 
     // Protect phone links: reveal the number only on click
     document.addEventListener('DOMContentLoaded', function () {
