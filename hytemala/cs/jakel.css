@@ -289,7 +289,7 @@ html, body {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .container { animation: none; }
+  .container { animation: none; will-change: auto; }
   .controls button, .editor-panel button { transition: none; }
 }
 

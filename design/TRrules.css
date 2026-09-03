@@ -212,6 +212,6 @@ html, body {
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   body { animation: none; }
-  body::before { animation: none; }
-  .terms-box { animation: none; }
+  body::before { animation: none; will-change: auto; }
+  .terms-box { animation: none; will-change: auto; }
 }

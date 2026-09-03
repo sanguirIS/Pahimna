@@ -278,6 +278,6 @@ html, body {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .banner .slider { animation: none; }
+  .banner .slider { animation: none; will-change: auto; -webkit-backface-visibility: visible; backface-visibility: visible; }
   body { animation: none; }
 }

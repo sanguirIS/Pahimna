@@ -1134,12 +1134,14 @@ img, video, iframe, .card-custom-image img, .card-custom-image video {
     .title-3d-gradient,
     .title-3d-gradient::after {
         animation: none;
+        will-change: auto;
     }
     .hero-title-inner {
         transition: none;
+        will-change: auto;
     }
-    .orb { animation: none; }
-    .anime-bg::before, .anime-bg::after { animation: none; }
+    .orb { animation: none; will-change: auto; }
+    .anime-bg::before, .anime-bg::after { animation: none; will-change: auto; }
     body { animation: none; }
 }
 

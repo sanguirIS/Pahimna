@@ -219,7 +219,7 @@ html, body {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .container { animation: none; }
+  .container { animation: none; will-change: auto; }
   .copy-button, .generate-button { transition: none; }
 }
 

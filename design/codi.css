@@ -229,8 +229,8 @@ html, body {
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   body { animation: none; }
-  body::before, body::after { animation: none; }
-  .container { animation: none; }
+  body::before, body::after { animation: none; will-change: auto; }
+  .container { animation: none; will-change: auto; }
   .refresh_button { transition: none; }
   .button button { transition: none; }
 }

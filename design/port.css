@@ -60,7 +60,6 @@ body.bg-slate-900 {
   width: 0%;
   z-index: 50;
   will-change: width;
-  transform: translateZ(0);
 }
 
 .section-title {
@@ -248,9 +247,14 @@ img { max-width: 100%; height: auto; }
   .title-3d-gradient,
   .title-3d-gradient::after {
     animation: none;
+    will-change: auto;
   }
   .hero-title-inner {
     transition: none;
+    will-change: auto;
+  }
+  .progress-bar {
+    will-change: auto;
   }
 }
 
