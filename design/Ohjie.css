@@ -289,7 +289,7 @@ img { width: 100%; }
     transition: color 0.25s ease;
 }
 
-.site-sidebar .nav-link .more-chevron { margin-left: auto; transition: transform 0.3s ease; }
+.site-sidebar .nav-link .more-chevron { margin-left: auto; transition: transform 0.3s ease; will-change: transform; }
 
 .site-sidebar .more-toggle:not(.collapsed) .more-chevron { transform: rotate(180deg); }
 
