@@ -107,22 +107,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             if (document.getElementById('devtools-block-overlay')) return;
             var overlay = document.createElement('div');
             overlay.id = 'devtools-block-overlay';
-            overlay.style.cssText = '
-                position: fixed; inset: 0; z-index: 999999;
-                background: rgba(0,0,0,0.92); color: #fff;
-                display: flex; flex-direction: column;
-                align-items: center; justify-content: center;
-                font-family: Inter, sans-serif; text-align: center;
-                padding: 40px;
-            ';
-            overlay.innerHTML = '
-                <div style="font-size: 48px; margin-bottom: 16px;">🚫</div>
-                <h2 style="margin: 0 0 12px; font-size: 24px;">Developer Tools Detected</h2>
-                <p style="margin: 0; font-size: 14px; opacity: 0.7; max-width: 400px;">
-                    Inspection of this page is restricted on desktop devices.
-                    Please close Developer Tools to continue.
-                </p>
-            ';
+            overlay.style.cssText = 'position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.92); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: Inter, sans-serif; text-align: center; padding: 40px;';
+            overlay.innerHTML = '<div style="font-size: 48px; margin-bottom: 16px;">🚫</div><h2 style="margin: 0 0 12px; font-size: 24px;">Developer Tools Detected</h2><p style="margin: 0; font-size: 14px; opacity: 0.7; max-width: 400px;">Inspection of this page is restricted on desktop devices. Please close Developer Tools to continue.</p>';
             document.body.appendChild(overlay);
             // Auto-remove when DevTools closes (resize back to normal)
             window.addEventListener('resize', function _onResize() {
