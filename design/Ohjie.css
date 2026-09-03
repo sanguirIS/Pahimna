@@ -488,6 +488,7 @@ body.sheet-open { overflow: hidden; }
     background: linear-gradient(135deg, var(--color-brand), var(--color-accent1));
     color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .btn-brand::before {
