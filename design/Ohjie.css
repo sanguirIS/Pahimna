@@ -82,6 +82,7 @@ body {
     filter: blur(70px);
     opacity: 0.5;
     animation: floatOrb 16s ease-in-out infinite;
+    will-change: transform;
 }
 
 .orb-1 {
@@ -128,6 +129,7 @@ body {
     background: linear-gradient(135deg, #ff8fab, #ff2e63);
     opacity: 0.7;
     animation: fall linear infinite;
+    will-change: transform;
 }
 
 .anime-bg::before { left: 12%; animation-duration: 14s; }
@@ -1082,6 +1084,7 @@ img, video, iframe, .card-custom-image img, .card-custom-image video {
     color: transparent;
     -webkit-text-fill-color: transparent;
     animation: hero-shine 4s ease-in-out infinite;
+    will-change: background-position;
 }
 
 @keyframes hero-float {

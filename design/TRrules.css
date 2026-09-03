@@ -45,6 +45,7 @@ body::before {
   filter: blur(90px);
   background: radial-gradient(circle, rgba(0, 245, 212, 0.3), transparent 70%);
   animation: floatOrb 16s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes aurora {
@@ -72,6 +73,7 @@ body::before {
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: cardIn 0.6s ease-out;
+  will-change: transform;
   max-height: 92vh;
   overflow-y: auto;
 }

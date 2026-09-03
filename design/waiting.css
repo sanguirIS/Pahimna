@@ -49,6 +49,7 @@ body::before {
   left: clamp(-60px, -8vmin, -120px);
   background: radial-gradient(circle, rgba(255, 46, 99, 0.5), transparent 70%);
   animation: floatOrb 16s ease-in-out infinite;
+  will-change: transform;
 }
 
 body::after {
@@ -59,6 +60,7 @@ body::after {
   background: radial-gradient(circle, rgba(0, 245, 212, 0.35), transparent 70%);
   animation: floatOrb 16s ease-in-out infinite;
   animation-delay: -6s;
+  will-change: transform;
 }
 
 @keyframes aurora {
@@ -89,6 +91,7 @@ body::after {
   flex-direction: column;
   align-items: center;
   animation: cardIn 0.6s ease-out;
+  will-change: transform;
 }
 
 @keyframes cardIn {

@@ -55,6 +55,7 @@ body {
     flex-direction: column;
     gap: 10px;
     animation: cardIn 0.6s ease-out;
+    will-change: transform;
 }
 
 @keyframes cardIn {

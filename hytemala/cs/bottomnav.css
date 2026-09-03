@@ -22,6 +22,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     --bnv-brand2: #00f5d4;
 }
 
+/* Prevent horizontal scrollbar on all devices */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 body { padding-bottom: 96px; }
 
 .bottom-nav {
@@ -53,6 +59,7 @@ body { padding-bottom: 96px; }
     pointer-events: none;
     z-index: 0;
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), width 0.3s ease, opacity 0.25s ease;
+    will-change: transform;
 }
 
 .bottom-nav .nav-link {
@@ -114,6 +121,7 @@ body { padding-bottom: 96px; }
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
     transform: translateY(105%);
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
 }
 
 .more-sheet.open { transform: translateY(0); }
@@ -226,4 +234,40 @@ body.sheet-open { overflow: hidden; }
 .theme-transition *::after {
     transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease !important;
     transition-delay: 0 !important;
+}
+
+/* ===== Responsive adjustments ===== */
+
+/* Tiny phones (iPhone SE) */
+@media (max-width: 375px) {
+    .bottom-nav .nav-link { font-size: 10px; padding: 8px 2px 6px; }
+    .bottom-nav .nav-link i { font-size: 18px; }
+}
+
+/* Landscape phones — hide labels */
+@media (max-height: 500px) and (orientation: landscape) {
+    body { padding-bottom: 52px; }
+    .bottom-nav { height: 48px; }
+    .bottom-nav .nav-link { padding: 6px 2px 4px; }
+    .bottom-nav .nav-link span { display: none; }
+    .bottom-nav .nav-link i { font-size: 20px; }
+}
+
+/* Tablets (iPad Mini, iPad Air, Galaxy Tab) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    body { padding-bottom: 88px; }
+    .bottom-nav .nav-link { font-size: 12px; padding: 12px 4px 10px; }
+    .bottom-nav .nav-link i { font-size: 23px; }
+}
+
+/* Foldable devices (Galaxy Z Fold, Surface Duo) */
+@media (min-width: 500px) and (max-width: 768px) {
+    .bottom-nav .nav-link { font-size: 11px; }
+}
+
+/* Ensure safe area on notched phones */
+@supports (padding: env(safe-area-inset-bottom)) {
+    .bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
 }

@@ -41,6 +41,7 @@ body.bg-slate-900 {
   background: linear-gradient(135deg, #0f0524 0%, #1a0b2e 35%, #2d1b4e 65%, #0f0524 100%);
   background-size: 300% 300%;
   animation: aurora 18s ease-in-out infinite;
+  will-change: background-position;
 }
 
 @keyframes aurora {
@@ -58,6 +59,8 @@ body.bg-slate-900 {
   background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
   width: 0%;
   z-index: 50;
+  will-change: width;
+  transform: translateZ(0);
 }
 
 .section-title {
@@ -99,6 +102,60 @@ button,
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--primary-color), var(--primary-soft));
   border-radius: 5px;
+}
+
+/* ===== Responsive ===== */
+
+/* Prevent horizontal scrollbar */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* Tiny phones (iPhone SE) */
+@media (max-width: 375px) {
+  main { padding: 8px 10px !important; }
+  .space-y-20 > * + * { margin-top: 3rem; }
+  .space-y-24 > * + * { margin-top: 3.5rem; }
+  h1 { font-size: 2rem !important; }
+}
+
+/* Small phones */
+@media (max-width: 576px) {
+  main { padding: 10px 12px !important; }
+  .space-y-20 > * + * { margin-top: 3rem; }
+  .space-y-24 > * + * { margin-top: 4rem; }
+}
+
+/* Tablets */
+@media (min-width: 576px) and (max-width: 768px) {
+  main { padding: 16px 20px !important; }
+}
+
+/* Landscape phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  nav.sticky { height: 48px; }
+  nav.sticky .flex { height: 48px; }
+  main { padding-top: 60px !important; padding-bottom: 40px !important; }
+  .space-y-20 > * + * { margin-top: 2rem; }
+  .space-y-24 > * + * { margin-top: 2.5rem; }
+}
+
+/* Tablets landscape */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  main { padding: 16px 24px !important; }
+}
+
+/* Ensure profile image doesn't overflow */
+.w-56, .w-64, .w-80 {
+  max-width: 100%;
+}
+
+.profile-link {
+  max-width: min(320px, 80vw);
+  max-height: min(320px, 80vw);
 }
 
 /* ===== Modern 3D hero type (info.html) =====
@@ -167,6 +224,7 @@ button,
   color: transparent;
   -webkit-text-fill-color: transparent;
   animation: hero-shine 4s ease-in-out infinite;
+  will-change: background-position;
 }
 
 @keyframes hero-float {
